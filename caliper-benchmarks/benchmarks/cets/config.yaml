@@ -1,0 +1,48 @@
+test:
+  workers:
+    number: 5
+  rounds:
+    - label: Read a JobSeeker
+      txNumber: 5000
+      rateControl:
+          type: maximum-rate
+          opts:
+            tps: 100
+            step: 5
+            sampleInterval: 20
+            includeFailed": true
+      workload:
+        module: benchmarks/ptjsp/registerJobseeker.js
+    - label: Update a JobSeeker
+      txNumber: 5000
+      rateControl:
+          type: maximum-rate
+          opts:
+            tps: 100
+            step: 5
+            sampleInterval: 20
+            includeFailed": true
+      workload:
+        module: benchmarks/ptjsp/updateJobseeker.js
+    - label: Register a JobPosting
+      txNumber: 5000
+      rateControl:
+          type: maximum-rate
+          opts:
+            tps: 100
+            step: 5
+            sampleInterval: 20
+            includeFailed": true
+      workload:
+        module: benchmarks/ptjsp/registerJobPosting.js
+    - label: Apply for Job
+      txNumber: 5000
+      rateControl:
+          type: maximum-rate
+          opts:
+            tps: 100
+            step: 5
+            sampleInterval: 20
+            includeFailed": true
+      workload:
+        module: benchmarks/ptjsp/applyforjob.js
