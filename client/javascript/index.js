@@ -5,6 +5,7 @@
 'use strict';
 
 let contract;
+const crypto = require('crypto');
 const cont = require('./contract_invoke')
 const { Gateway, Wallets } = require('fabric-network');
 const fs = require('fs');
@@ -90,6 +91,23 @@ app.get('/admin/deletejob/:jobpostingId', async (req, res) => {
 app.get('/jobseeker/login',async (req,res)=>{
     res.redirect("login.html")
 })
+app.post('/jobseeker/login/verfify',async (req,res)=>{
+    console.log(req.body)
+    let username=req.body.username;
+    let password=crypto.createHash('sha256').update(req.body.password).digest('hex');
+    
+    try{
+        let usrobj=JSON.parse(await readJobseeker(username))
+        let usroriginalpassword=usrobj.password
+        if(usroriginalpassword==password){
+            res.redirect('/jobseeker/dashboard')
+        }else{
+           res.send("Invaild Credientials");
+        }
+    }catch{
+        res.send("User Doesn't Exits");
+    }
+})
 
 app.post('/createuser', async (req, res) => {
     try {
@@ -135,4 +153,9 @@ async function deleteJobposting(jobpostingId, admin) {
 async function createjobseeker(args) {
     await contract.submitTransaction('JobseekerContract:createjobseeker', args)
     console.log('JobseekerContract:createjobseeker-Transaction has been submitted');
+}
+async function readJobseeker(jobseekerId) {
+    const result = await contract.evaluateTransaction('JobseekerContract:readJobseeker', jobseekerId);
+    console.log(`JobseekerContract:readJobseeker-Transaction has been evaluated, result is: ${result.toString()}`);
+    return result;
 }
