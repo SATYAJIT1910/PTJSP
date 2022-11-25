@@ -90,9 +90,10 @@ body{
         </h2>
         <h4>Hi! Let's find a Great Job for you</h4>
         </div>
-    <a class="btn btn-primary m-2" href="/jobseeker/editprofile">Edit Profile</a>
-    <a class="btn btn-primary m-2" href="/jobseeker/updatepassword">Update Password</a>
-    <a class="btn btn-primary m-2" href="/jobseeker/searchjobs">Search Jobs</a>
+    <a class="btn btn-primary m-2" href=<%="/jobseeker/editprofile/"+usrdata %>>Edit Profile</a>
+    <a class="btn btn-primary m-2" href=<%="/jobseeker/viewfullprofile/"+usrdata %>>View Full Profile</a>
+    <a class="btn btn-primary m-2" href=<%="/jobseeker/updatepassword/"+usrdata %>>Update Password</a>
+    <a class="btn btn-primary m-2" href=<%="/jobseeker/searchjobs/"+usrdata %>>Search Jobs</a>
     <a class="btn btn-primary m-2" href="/logout">Logout</a>
 </body>
 </html>

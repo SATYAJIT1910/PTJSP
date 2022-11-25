@@ -131,7 +131,7 @@ app.get('/admin/deletejob/:jobpostingId', async (req, res) => {
 })
 //jobseeker
 app.get('/jobseeker/login', async (req, res) => {
-    res.redirect("login.html")
+    res.sendFile(path.join(__dirname + '/static/jobseeker/login.html'))
 })
 app.post('/jobseeker/login/verfify', async (req, res) => {
     console.log(req.body)
@@ -142,6 +142,8 @@ app.post('/jobseeker/login/verfify', async (req, res) => {
         let usrobj = JSON.parse(await readJobseeker(username))
         let usroriginalpassword = usrobj.password
         if (usroriginalpassword == password) {
+            req.session.loggedin=true
+            req.session.username=usrobj.jobseekerId
             res.redirect('/jobseeker/dashboard')
         } else {
             res.send("Invaild Credientials");
@@ -162,7 +164,24 @@ app.post('/createuser', async (req, res) => {
 
 })
 app.get('/jobseeker/dashboard', async (req, res) => {
-    res.render('jobseeker/dashboard')
+    if(req.session.loggedin){
+        res.render('jobseeker/dashboard',{"usrdata":req.session.username})
+    }
+})
+
+app.get('/jobseeker/editprofile/:ID',(req,res)=>{
+    if(req.session.loggedin && req.session.username==req.params.ID){
+        res.render('jobseeker/update')
+    }
+})
+
+
+
+
+app.get('/logout',(req,res)=>{
+    req.session.loggedin=false
+    req.session.username=undefined
+    res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
 })
 // Blockchain executer methods
 async function readAllJobSeeker() {

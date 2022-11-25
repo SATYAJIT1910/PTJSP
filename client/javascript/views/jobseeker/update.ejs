@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!--Author : Rakibul Islam-->
+<head>
+  <title>Update Job Seeker Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+
+  <style>
+    h2 {
+      text-align: center;
+    }
+    
+  </style>
+</head>
+<body>
+
+<div class="container"><br>
+  <h2>Enter Your Details </h2><br>
+  <form action="/action_page.php">
+
+    <div class="form-group">
+      <label for="id">User ID:</label>
+      <input type="id" class="form-control" id="jobseekerId" placeholder="Enter Jobseeker ID">
+    </div>
+
+
+    <div class="form-group">
+      <label for="fname">First name:</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Enter first name">
+    </div>
+
+    <div class="form-group">
+      <label for="lname">Last  name:</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Enter last name">
+    </div> 
+
+    <div class="form-group">
+      <label for="qualification">Select Qualification:</label>
+      <select class="form-control" id="qualification">
+        <option>Select </option>
+        <option>Secondary </option>
+        <option>Higher Secondary</option>
+        <option>Bachelor </option>
+        <option>Master's </option>
+        <option>Others</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="achievements">Achievements:</label>
+      <input type="text" class="form-control" id="achievements" placeholder="Enter your achievements">
+    </div>
+
+    <div class="form-group">
+      <label for="experience">Eperiences:</label>
+      <input type="text" class="form-control" id="experience" placeholder="Enter your experience">
+    </div>
+
+    <div class="form-group">
+      <label for="skills">Skills:</label>
+      <input type="text" class="form-control" id="skills" placeholder="Enter your skills">
+    </div>
+
+    <div class="form-group">
+      <label for="certificates">Certificates:</label>
+      <input type="text" class="form-control" id="certificates" placeholder="Enter your certificates">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+   
+  </form>
+</div>
+
+</body>
+</html>
