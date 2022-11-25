@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root{
+  --green:#3427ae;
+  --black:#2c2c54;
+  --font-color: #424642;
+--background: #f0f0f5;
+--blue: #232d67;
+--lightblue: #232d67c5;
+--blue: #3e53d8;
+}
+
+*{
+  font-family: 'Nunito', sans-serif;
+  margin:0; padding:0;
+  box-sizing: border-box;
+  outline: none; border:none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+*::selection{
+  background:var(--green);
+  color:#fff;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 6.5rem;
+  scroll-behavior: smooth;
+}
+
+.header-1{
+    background:#eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+  }
+  .logo{
+    color:var(--black);
+    font-weight: bolder;
+    font-size: 3rem;
+  }
+
+  .logo i{
+    padding-right: .5rem;
+    color:var(--green);
+  }
+
+  
+.header-1 .search-box-container{
+    display: flex;
+    height:5rem;
+  }
+  
+
+
+  .header-1 .search-box-container label{
+    height: 100%;
+    width:8rem;
+    font-size: 2.5rem;
+    line-height: 5rem;
+    color:#fff;
+    background:var(--green);
+    text-align: center;
+    cursor: pointer;
+  }
+  
+.header-1 .search-box-container label:hover{
+    background:var(--black);
+  }
+  
+
+
+
+  .header-2{
+    background:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    position: relative;
+  }
+
+  
+.header-2 .navbar a{
+    padding:.5rem 1.5rem;
+    font-size: 2rem;
+    border-radius: .5rem;
+    color:var(--black);
+  }
+
+  
+.header-2 .navbar a:hover{
+    background:var(--green);
+    color:#fff;
+  }
+
+
+  
+.header-2 .icons a{
+    font-size: 2.5rem;
+    color:var(--black);
+    padding-left: 1rem;
+  }
+
+
+
+
+
+  .header-1 .search-box-container #search-box{
+    height: 100%;
+    width:100%;
+    padding:1rem;
+    font-size: 2rem;
+    color:#333;
+    border:.1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+  }
+
+
+
+
+  
+  .search_bar {
+    width: 100%;
+    height: auto;
+    padding: 100px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.search_bar p {
+    font-size: 59px;
+    font-weight: 600;
+    color: var(--blue);
+    line-height: 70px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.input_field {
+    width: 620px;
+    height: 80px;
+    border-radius: 120px;
+    display: flex;
+    align-items: center;
+    box-shadow: 5px 10px 35px rgba(0, 0, 0, 0.104);
+    padding-left: 40px;
+    position: relative;
+}
+
+#search_icon {
+    font-size: 64px;
+    margin-right: 40px;
+}
+.input_field input {
+    width: 50%;
+    height: 100%;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: .4;
+    background-color: transparent;
+}
+
+.input_field button {
+    width: 180px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: var(--blue);
+    border-radius: 80px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--background);
+}
+
+
+
+/*   fOrm content */
+
+
+.header .login-form{
+    position: absolute;
+    top:110%; right:-110%;
+    width:35rem;
+    box-shadow: var(--box-shadow);
+    padding:2rem;
+    border-radius: .5rem;
+    background: #fff;
+    text-align: center;
+}
+
+.header .login-form.active{
+    right:2rem;
+    transition: .4s linear;
+}
+
+.header .login-form h3{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.header .login-form .box{
+    width: 100%;
+    margin:.7rem 0;
+    background:#eee;
+    border-radius: .5rem;
+    padding:1rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    text-transform: none;
+}
+
+.header .login-form p{
+    font-size: 1.4rem;
+    padding:.5rem 0;
+    color:var(--light-color);
+}
+
+.header .login-form p a{
+    color:var(--orange);
+    text-decoration: underline;
+}

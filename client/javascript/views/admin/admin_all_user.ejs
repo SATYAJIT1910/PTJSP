@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Author : Rakibul Islam-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin All Users</title>
+    <style>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1.5em;
+            min-width: 400px;
+
+        }
+
+        .content-table thead tr {
+            background-color: #CC9900;
+            color: #fff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 22px 25px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(evn) {
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 5px solid #CC9900;
+        }
+
+        .content-table td {
+            text-align: center;
+        }
+
+        .content-table {
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            text-transform: uppercase;
+            color: #222;
+            letter-spacing: 1px;
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+        }
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .center h1 {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid silver;
+        }
+
+
+        .popup {
+
+            width: 400px;
+            background: #fff;
+            border-radius: 6px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            visibility: hidden;
+            transition: transform 0.4s, top 0.4s;
+
+
+        }
+
+        .open-popup {
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+
+    <br>
+    <h1><u>Jobseeker Details</u></h1><br>
+
+
+    <table class="content-table">
+
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <% for(var i=0; i < data.length; i++) { %>
+                <tr>
+
+                    <td>
+                        <%= data[i].Record.jobseekerId %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.firstName %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.lastName %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.age %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.phoneNumber %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.address %>
+                            <!-- <div class="container">
+                            <button type="more" class="btn" onclick="openPopup()"  value="More">Details</button>
+                             <div class="popup" id="popup">
+                                <img src="tick.png" >
+                                <h2>Qualification</h2>
+                                <p>BCA</p>
+                                <h2>Skills</h2>
+                                <P>C,PYTHON,JAVA</P>
+
+                                <button type="button"  onclick="closePopup()">Ok</button>
+                                </div>
+    
+                             </div> -->
+                    </td>
+                    <td>
+                        <a href=<%="/admin/deleteuser/" + data[i].Record.jobseekerId %>>Delete</a>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <script>
+        let popup = document.getElementById("popup");
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
+        function closePopup() {
+            popup.classList.remove("open-popup");
+        }
+
+    </script>
+</body>
+
+</html>
