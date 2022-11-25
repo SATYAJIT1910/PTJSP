@@ -86,7 +86,21 @@ app.get('/admin/deletejob/:jobpostingId', async (req, res) => {
         res.sendStatus(400);
     }
 })
+//jobseeker
+app.get('/jobseeker/login',async (req,res)=>{
+    res.redirect("login.html")
+})
 
+app.post('/createuser', async (req, res) => {
+    try {
+        await createjobseeker(JSON.stringify(req.body));
+       console.log(req.body) 
+       res.send('Job Seeker Created Successfully. Back to <a href="/jobseeker/login">Login</a>');
+    } catch (error) {
+        res.sendStatus(400);
+    }
+
+})
 // Blockchain executer methods
 async function readAllJobSeeker() {
     const result = await contract.evaluateTransaction('AdminContract:queryAllJobSeeker');
@@ -116,4 +130,9 @@ async function deleteJobposting(jobpostingId, admin) {
         await contract.submitTransaction('HRContract:deletejobposting', jobpostingId)
         console.log('HRContract:deletejobposting-Transaction has been submitted');
     }
+}
+//Jobseeker
+async function createjobseeker(args) {
+    await contract.submitTransaction('JobseekerContract:createjobseeker', args)
+    console.log('JobseekerContract:createjobseeker-Transaction has been submitted');
 }
