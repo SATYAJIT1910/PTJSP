@@ -61,14 +61,31 @@ app.get('/admin/allusers', async (req, res) => {
 })
 app.get('/admin/alljobs', async (req, res) => {
     try {
-        res.json(JSON.parse(await queryAllJobposting()));
+        res.render('admin/admin_all_jobs',{"data":JSON.parse(await queryAllJobposting())});
     } catch (error) {
         res.sendStatus(404);
     }
 })
 
+app.get('/admin/deleteuser/:JSkey', async (req, res) => {
+    try {
+        let JSkey = req.params.JSkey;
+        await deleteJobSeeker(JSkey, true);
+        res.redirect('/admin/allusers')
+    } catch (error) {
+        res.sendStatus(400);
+    }
+})
 
+app.get('/admin/deletejob/:jobpostingId', async (req, res) => {
+    try {
 
+        await deleteJobposting(req.params.jobpostingId, true)
+        res.redirect('/admin/alljobs');
+    } catch (error) {
+        res.sendStatus(400);
+    }
+})
 
 // Blockchain executer methods
 async function readAllJobSeeker() {
@@ -81,4 +98,22 @@ async function queryAllJobposting() {
     const result = await contract.evaluateTransaction('AdminContract:queryAllJobPosting');
     console.log(`AdminContract:queryAllJobPosting-Transaction has been evaluated, result is: ${result.toString()}`);
     return result;
+}
+async function deleteJobSeeker(JSkey, admin) {
+    if (admin) {
+        await contract.submitTransaction('AdminContract:deleteJobseeker', JSkey)
+        console.log('AdminContract:deleteJobseeker-Transaction has been submitted');
+    } else {
+        await contract.submitTransaction('JobseekerContract:deleteJobseeker', JSkey)
+        console.log('JobseekerContract:deleteJobseeker-Transaction has been submitted');
+    }
+}
+async function deleteJobposting(jobpostingId, admin) {
+    if (admin) {
+        await contract.submitTransaction('AdminContract:deletejobposting', jobpostingId)
+        console.log('AdminContract:deletejobposting-Transaction has been submitted');
+    } else {
+        await contract.submitTransaction('HRContract:deletejobposting', jobpostingId)
+        console.log('HRContract:deletejobposting-Transaction has been submitted');
+    }
 }

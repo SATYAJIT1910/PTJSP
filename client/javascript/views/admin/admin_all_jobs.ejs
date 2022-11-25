@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Author : Rakibul Islam-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin All Jobs Details</title>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1.5em;
+            min-width: 400px;
+
+
+        }
+
+        .content-table thead tr {
+            background-color: #CC9900;
+            color: #fff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(evn) {
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #CC9900;
+        }
+
+        .content-table td {
+            text-align: center;
+        }
+
+        .content-table {
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            text-transform: uppercase;
+            color: #222;
+            letter-spacing: 1px;
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+        }
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .center h1 {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid silver;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            var actions = $("table td:last-child").html();
+
+            // Edit row on edit button click
+            $(document).on("click", ".edit", function () {
+                $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                    $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                });
+                $(this).parents("tr").find(".add, .edit").toggle();
+                $(".add-new").attr("disabled", "disabled");
+            });
+            // Delete row on delete button click
+            $(document).on("click", ".delete", function () {
+                $(this).parents("tr").remove();
+                $(".add-new").removeAttr("disabled");
+            });
+        });
+
+    </script>
+
+</head>
+
+
+
+<body>
+
+    <br>
+    <h1><u>Job Details </u></h1><br><br><br><br>
+
+
+    <table id="myTable" class="content-table">
+
+        <thead>
+            <tr>
+
+
+                <th scope="col">HRID</th>
+                <th scope="col">Profile Name</th>
+                <th scope="col">Agelimit</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Skills</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Location</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <% for(var i=0; i < data.length; i++) { %>
+                <tr>
+
+                    <td>
+                        <%= data[i].Record.HRId %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.profilename %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.agelimit %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.companyname %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.qualification %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.skills %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.salary %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.location %>
+                    </td>
+                    <td>
+                        <%= data[i].Record.yearofexperience %>
+
+                            <!-- <a class="edit" title="Edit" data-toggle="tooltip"><i
+                                    class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip"><i
+                                    class="material-icons">&#xE872;</i></a> -->
+                    </td>
+                    <td>
+                        <a href=<%="/admin/deletejob/" + data[i].Record.jobpostingId %>>Delete</a>
+
+                    </td>
+
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>
