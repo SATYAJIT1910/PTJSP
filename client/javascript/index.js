@@ -241,7 +241,7 @@ app.get('/jobseeker/apply/:JPID', async (req, res) => {
         await applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
         res.send("You have sucessfully Applied. Thank You")
     } else {
-        res.send("Login Required")
+        res.redirect("/jobseeker/login")
     }
 })
 
