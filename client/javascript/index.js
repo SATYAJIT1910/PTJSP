@@ -275,7 +275,11 @@ app.get('/hr/dashboard',(req,res)=>{
 
 })
 app.get('/hr/jobpost',(req,res)=>{
+    if(req.session.loggedin && req.session.usertype=='hr'){
     res.sendFile(path.join(__dirname + '/static/hr/jobpost.html'))
+    }else{
+        res.send("Login Required")
+    }
 })
 app.post('/hr/createjob', async (req, res) => {
     try {
@@ -287,10 +291,36 @@ app.post('/hr/createjob', async (req, res) => {
         res.sendStatus(400);
     }
 })
+app.get('/hr/viewposts',async(req,res)=>{
+    if(req.session.loggedin && req.session.usertype=='hr'){
+        try {
+            let data=JSON.parse(await queryJobPostingByHRId(req.session.username));
+            res.render('hr/postedjobs',{"data":data})
+        } catch (error) {
+            res.sendStatus(404);
+        }
+        
+    }else{
+        res.send("Login Required")
+    }
+})
 
+app.get('/hr/deletejob/:jobpostingId', async (req, res) => {
+    try {
+        await deleteJobposting(req.params.jobpostingId, false)
+        res.redirect("/hr/viewposts");
+    } catch (error) {
+        res.sendStatus("Failed to Delete");
+    }
+})
 
+app.get('/hr/appliedcandidates/',async (req,res)=>{
+    try{
 
+    }catch(error){
 
+    }
+})
 
 
 
@@ -370,4 +400,9 @@ async function applyforjob(args) {
 async function createJobposting(obj) {
     await contract.submitTransaction('HRContract:createjobposting', JSON.stringify(obj))
     console.log('HRContract:createjobposting-Transaction has been submitted');
+}
+async function queryJobPostingByHRId(HRId) {
+    const result = await contract.evaluateTransaction('HRContract:queryJobPostingByHRId', HRId);
+    console.log(`HRContract:queryJobPostingByHRId-Transaction has been evaluated, result is: ${result.toString()}`);
+    return result;
 }
