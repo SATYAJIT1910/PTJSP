@@ -169,9 +169,13 @@ app.get('/jobseeker/dashboard', async (req, res) => {
     }
 })
 
-app.get('/jobseeker/editprofile/:ID',(req,res)=>{
+app.get('/jobseeker/editprofile/:ID',async (req,res)=>{
     if(req.session.loggedin && req.session.username==req.params.ID){
-        res.render('jobseeker/update')
+        let usrobj=JSON.parse(await readJobseeker(req.params.ID))
+        console.log("The data passed is -> ")
+        console.log(usrobj)
+        console.log("\n\n")
+        res.render('jobseeker/update',{"data":usrobj})
     }else{
         res.send("Login Required")
     }
