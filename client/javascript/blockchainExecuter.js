@@ -10,6 +10,7 @@ async function initcont() {
     contract = await cont.initContract();
     console.log(contract)
 }
+// Admin
 async function readAllJobSeeker() {
     const result = await contract.evaluateTransaction('AdminContract:queryAllJobSeeker');
     console.log(`AdminContract:queryAllJobSeeker-Transaction has been evaluated, result is: ${result.toString()}`);
@@ -69,7 +70,7 @@ async function applyforjob(args) {
 
 }
 
-// hr
+// HR
 
 async function createJobposting(obj) {
     await contract.submitTransaction('HRContract:createjobposting', JSON.stringify(obj))
@@ -90,7 +91,8 @@ async function updateStatus(jobseekerId, jobpostingId) {
     console.log('HRContract:updateStatus-Transaction has been submitted');
 }
 
-module.exports={readAllJobSeeker,
+module.exports = {
+    readAllJobSeeker,
     queryAllJobposting,
     deleteJobSeeker,
     deleteJobposting,

@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const path = require('path');
-const crypto = require('crypto');
-const blockexecute=require('../blockchainExecuter')
+const blockexecute = require('../blockchainExecuter')
 
+// admin login
 router.get('/login', (req, res) => {
-    res.sendFile('/static/admin/login.html',{ root: '.' })
+    res.sendFile('/static/admin/login.html', { root: '.' })
 })
+// verfication of admin credentials
 router.post('/login/verfify', (req, res) => {
-    console.log(req.body)
     if (req.body.username == 'admin' && req.body.password == '1234') {
         req.session.loggedin = true;
         req.session.username = 'admin';
@@ -17,13 +16,15 @@ router.post('/login/verfify', (req, res) => {
         res.send("Invaild Credientials")
     }
 })
+// dashboard for admin
 router.get('/dashboard', (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
-        res.sendFile('/static/admin/dashboard.html',{ root: '.' })
+        res.sendFile('/static/admin/dashboard.html', { root: '.' })
     } else {
         res.send("Login Required")
     }
 })
+// all registered job seekers view to admin
 router.get('/allusers', async (req, res) => {
 
     if (req.session.loggedin && req.session.username == 'admin') {
@@ -31,25 +32,26 @@ router.get('/allusers', async (req, res) => {
             res.render('admin/admin_all_user', { "data": JSON.parse(await blockexecute.readAllJobSeeker()) })
 
         } catch (error) {
-            res.sendStatus(error);
+            res.sendStatus(501);
         }
     } else {
         res.send("Login Required")
     }
 })
+// all posted job view to admin
 router.get('/alljobs', async (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
             res.render('admin/admin_all_jobs', { "data": JSON.parse(await blockexecute.queryAllJobposting()) });
         } catch (error) {
-            res.sendStatus(404);
+            res.sendStatus(501);
         }
     } else {
         res.send("Login Required")
     }
 }
 )
-
+// delete a job seeker by admin
 router.get('/deleteuser/:JSkey', async (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
@@ -57,14 +59,14 @@ router.get('/deleteuser/:JSkey', async (req, res) => {
             await blockexecute.deleteJobSeeker(JSkey, true);
             res.redirect('/admin/allusers')
         } catch (error) {
-            res.sendStatus(400);
+            res.sendStatus(501);
         }
     } else {
         res.send("Login Required")
     }
 }
 )
-
+// delete a job post by admin
 router.get('/deletejob/:jobpostingId', async (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
@@ -72,7 +74,7 @@ router.get('/deletejob/:jobpostingId', async (req, res) => {
             await blockexecute.deleteJobposting(req.params.jobpostingId, true)
             res.redirect('/admin/alljobs');
         } catch (error) {
-            res.sendStatus(400);
+            res.sendStatus(501);
         }
     } else {
         res.send("Login Required")
