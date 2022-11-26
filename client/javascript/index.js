@@ -191,49 +191,59 @@ app.post('/jobseeker/update', async (req, res) => {
 })
 app.get('/jobseeker/viewfullprofile/:ID', async (req, res) => {
     if (req.session.loggedin && req.session.username == req.params.ID) {
-        let data=JSON.parse(await readJobseeker(req.params.ID))
-        res.render('jobseeker/fullprofile',{"data":data});
+        let data = JSON.parse(await readJobseeker(req.params.ID))
+        res.render('jobseeker/fullprofile', { "data": data });
     } else {
         res.send("Login Required")
     }
 })
 
-app.get('/jobseeker/updatepassword/',(req,res)=>{
-    if(req.session.loggedin){
+app.get('/jobseeker/updatepassword/', (req, res) => {
+    if (req.session.loggedin) {
         res.sendFile(path.join(__dirname + '/static/jobseeker/updatepassword.html'))
-    }else{
+    } else {
         res.send("Login Required")
     }
 })
-app.post('/jobseeker/passwordupdate',async (req,res)=>{
-    let oldpasswd=req.body.oldpaswd;
-    let newpasswd=req.body.newpaswd;
-    let jobseekerId=req.session.username;
-    oldpasswd=crypto.createHash('sha256').update(oldpasswd).digest('hex');
-    let data=JSON.parse(await getjobseekerPassword(jobseekerId))
-    let originalPassword=data.password;
-    if(oldpasswd==originalPassword){
+app.post('/jobseeker/passwordupdate', async (req, res) => {
+    let oldpasswd = req.body.oldpaswd;
+    let newpasswd = req.body.newpaswd;
+    let jobseekerId = req.session.username;
+    oldpasswd = crypto.createHash('sha256').update(oldpasswd).digest('hex');
+    let data = JSON.parse(await getjobseekerPassword(jobseekerId))
+    let originalPassword = data.password;
+    if (oldpasswd == originalPassword) {
         await updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
         res.send("<b>Password Sucessfully Updated</b>")
-    }else{
+    } else {
         res.send("<b>Old Password doesn't match</b>")
     }
 })
 
 app.get('/jobseeker/deleteuser', async (req, res) => {
-        await deleteJobSeeker(req.session.username, false);
-        req.session.loggedin=false
-        req.session.username=undefined
-        res.send("User Deleted.<a href='/'>Back to Home</a>");
+    await deleteJobSeeker(req.session.username, false);
+    req.session.loggedin = false
+    req.session.username = undefined
+    res.send("User Deleted.<a href='/'>Back to Home</a>");
 })
-app.get('/jobseeker/searchjobs/',async(req,res)=>{
-        try {
-            res.render('jobseeker/searchjob', { "data": JSON.parse(await queryAllJobposting()) });
-        } catch (error) {
-            res.sendStatus(404);
-        }
+app.get('/jobseeker/searchjobs/', async (req, res) => {
+    try {
+        res.render('jobseeker/searchjob', { "data": JSON.parse(await queryAllJobposting()),"username":req.session.username });
+    } catch (error) {
+        res.sendStatus(404);
+    }
 })
+app.get('/jobseeker/apply/:JPID', async (req, res) => {
 
+    const jobseekerId = req.session.username;
+    const jobpostingId = req.params.JPID;
+    if (req.session.loggedin) {
+        await applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
+        res.send("You have sucessfully Applied. Thank You")
+    } else {
+        res.send("Login Required")
+    }
+})
 
 
 app.get('/logout', (req, res) => {
@@ -296,4 +306,9 @@ async function getjobseekerPassword(jobseekerId) {
     const result = await contract.evaluateTransaction('JobseekerContract:getjobseekerPassword', jobseekerId);
     console.log(`JobseekerContract:getjobseekerPassword-Transaction has been evaluated, result is: ${result.toString()}`);
     return result;
+}
+async function applyforjob(args) {
+    await contract.submitTransaction('JobseekerContract:applyForJob', args)
+    console.log('JobseekerContract:applyForJob-Transaction has been submitted');
+
 }

@@ -228,7 +228,15 @@
                         <%= data[i].Record.yearofexperience %>
                     </td>
                     <td>
-                        <a href=<%="/apply/"+data[i].Record.jobpostingId%>>Apply</a>
+                        <% if(data[i].Record.appliedCandidates.includes(username)){ %>
+                            Already Applied
+                        <%}else{%>
+                            
+                            <a href=<%="/jobseeker/apply/"+data[i].Record.jobpostingId%>>Apply</a>
+                         
+                        <%}%>
+                        
+
                         <!-- <div class="container">
                             <button type="apply" class="btn" onclick="openPopup()" value="Apply">Apply</button>
                             <div class="popup" id="popup">
