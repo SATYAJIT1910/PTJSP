@@ -229,7 +229,12 @@
                         <%= data[i].Record.yearofexperience %>
                     </td>
                     <td>
-                        <a href=<%="/hr/appliedcandidates/"+data[i].Record.jobpostingId%>>Open</a>
+                    <div>
+                      <!-- <%=data[i].Record.appliedCandidates%> -->
+                      <% for(var j=0;j < data[i].Record.appliedCandidates.length;j++){ %>
+                        <ul><a href=<%="/hr/candidate/"+ data[i].Record.appliedCandidates[j]%>><%=data[i].Record.appliedCandidates[j]%></a</ul>
+                        <%}%>
+                    </div>
                     </td>
                     <td>
                         <a href=<%="/hr/deletejob/"+data[i].Record.jobpostingId%>>Delete</a>

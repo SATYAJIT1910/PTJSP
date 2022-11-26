@@ -314,9 +314,10 @@ app.get('/hr/deletejob/:jobpostingId', async (req, res) => {
     }
 })
 
-app.get('/hr/appliedcandidates/',async (req,res)=>{
+app.get('/hr/appliedcandidates/:jobpostingId',async (req,res)=>{
     try{
-
+        let jobpostingId=req.params.jobpostingId
+        
     }catch(error){
 
     }
