@@ -23,57 +23,53 @@
 
 <div class="container"><br>
   <h2>Update Your Details </h2><br>
-  <form action="/action_page.php">
+  <form action="/jobseeker/update" method="post">
 
     <div class="form-group">
       <label for="id">User ID:</label>
-      <input type="id" class="form-control" id="jobseekerId" value=<%=''+data.jobseekerId%> readonly>
+      <input type="id" class="form-control" name="jobseekerId" value=<%=''+data.jobseekerId%> readonly>
     </div>
 
 
     <div class="form-group">
       <label for="fname">First name:</label>
-      <input type="text" class="form-control" id="firstName" value=<%=''+data.firstName%> placeholder="Enter first name" required>
+      <input type="text" class="form-control" name="firstName" value=<%=''+data.firstName%> placeholder="Enter first name" required>
     </div>
 
     <div class="form-group">
       <label for="lname">Last  name:</label>
-      <input type="text" class="form-control" id="lastName" value=<%=''+data.lastName%> placeholder="Enter last name" value="" required>
-    </div> 
-    <div class="form-group">
-      <label for="phone">Phone Number:</label>
-      <input type="number" class="form-control" id="phone" value=<%=''+data.phoneNumber%> placeholder="Enter phone number" value="" required>
+      <input type="text" class="form-control" name="lastName" value=<%=''+data.lastName%> placeholder="Enter last name" value="" required>
     </div> 
 
     <div class="form-group">
       <label for="qualification">Select Qualification:</label>
-      <select class="form-control" id="qualification">
-        <option>Select </option>
-        <option>Secondary </option>
-        <option>Higher Secondary</option>
-        <option>Bachelor's </option>
-        <option>Master's </option>
+      <select class="form-control" name="qualification">
+        <option name="">Select </option>
+        <option name="Secondary">Secondary </option>
+        <option name="Higher Secondary">Higher Secondary</option>
+        <option name="Bachelor's">Bachelor's </option>
+        <option name="Master's">Master's </option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="achievements">Achievements:</label>
-      <input type="text" class="form-control" id="achievements" placeholder="Enter your achievements">
+      <input type="text" class="form-control" name="achievements" placeholder="Enter your achievements">
     </div>
 
     <div class="form-group">
-      <label for="experience">Eperiences:</label>
-      <input type="text" class="form-control" id="experience" placeholder="Enter your experience">
+      <label for="experience">Experiences:</label>
+      <input type="text" class="form-control" name="experience" placeholder="Enter your experience">
     </div>
 
     <div class="form-group">
       <label for="skills">Skills:</label>
-      <input type="text" class="form-control" id="skills" placeholder="Enter your skills">
+      <input type="text" class="form-control" name="skills" placeholder="Enter your skills">
     </div>
 
     <div class="form-group">
       <label for="certificates">Certificates:</label>
-      <input type="text" class="form-control" id="certificates" placeholder="Enter your certificates">
+      <input type="text" class="form-control" name="certificates" placeholder="Enter your certificates">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

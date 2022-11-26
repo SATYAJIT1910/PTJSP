@@ -142,8 +142,8 @@ app.post('/jobseeker/login/verfify', async (req, res) => {
         let usrobj = JSON.parse(await readJobseeker(username))
         let usroriginalpassword = usrobj.password
         if (usroriginalpassword == password) {
-            req.session.loggedin=true
-            req.session.username=usrobj.jobseekerId
+            req.session.loggedin = true
+            req.session.username = usrobj.jobseekerId
             res.redirect('/jobseeker/dashboard')
         } else {
             res.send("Invaild Credientials");
@@ -164,29 +164,38 @@ app.post('/createuser', async (req, res) => {
 
 })
 app.get('/jobseeker/dashboard', async (req, res) => {
-    if(req.session.loggedin){
-        res.render('jobseeker/dashboard',{"usrdata":req.session.username})
+    if (req.session.loggedin) {
+        res.render('jobseeker/dashboard', { "usrdata": req.session.username })
     }
 })
 
-app.get('/jobseeker/editprofile/:ID',async (req,res)=>{
-    if(req.session.loggedin && req.session.username==req.params.ID){
-        let usrobj=JSON.parse(await readJobseeker(req.params.ID))
+app.get('/jobseeker/editprofile/:ID', async (req, res) => {
+    if (req.session.loggedin && req.session.username == req.params.ID) {
+        let usrobj = JSON.parse(await readJobseeker(req.params.ID))
         console.log("The data passed is -> ")
         console.log(usrobj)
         console.log("\n\n")
-        res.render('jobseeker/update',{"data":usrobj})
-    }else{
+        res.render('jobseeker/update', { "data": usrobj })
+    } else {
         res.send("Login Required")
     }
+})
+app.post('/jobseeker/update', async(req, res) => {
+   if(req.session.loggedin && req.session.username == req.body.jobseekerId){
+    console.log(req.body)
+    await updatejobseeker(JSON.stringify(req.body))
+    res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
+}else {
+    res.send("Login Required")
+}
 })
 
 
 
 
-app.get('/logout',(req,res)=>{
-    req.session.loggedin=false
-    req.session.username=undefined
+app.get('/logout', (req, res) => {
+    req.session.loggedin = false
+    req.session.username = undefined
     res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
 })
 // Blockchain executer methods
@@ -228,4 +237,8 @@ async function readJobseeker(jobseekerId) {
     const result = await contract.evaluateTransaction('JobseekerContract:readJobseeker', jobseekerId);
     console.log(`JobseekerContract:readJobseeker-Transaction has been evaluated, result is: ${result.toString()}`);
     return result;
+}
+async function updatejobseeker(args) {
+    await contract.submitTransaction('JobseekerContract:updatejobseeker', args)
+    console.log('JobseekerContract:updatejobseeker-Transaction has been submitted');
 }
