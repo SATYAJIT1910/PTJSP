@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--Author : Rakibul Islam-->
+<head>
+  <title>Post Job</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    h2 {
+      text-align: center;
+    }
+    
+  </style>
+ <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Job Post </h2><br>
+  <form action="/HR/createjob" method="post">
+
+    <div class="form-group">
+      <label for="id">Job Post ID:</label>
+      <input type="id" class="form-control" name="jobpostingId" placeholder="Enter Jobposting ID" required>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Profile Name;</label>
+      <input type="text" class="form-control" name="profilename" placeholder="Enter Profile name " required>
+    </div> 
+
+    <div class="form-group">
+      <label for="qualification">Qualification;</label>
+      <input type="text" class="form-control" name="qualification" placeholder="Enter Qualification" required>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age Limit:</label>
+      <input type="number" class="form-control" name="agelimit" placeholder="Enter age Limit" required>
+    </div>
+
+    <div class="form-group">
+      <label for="number">Salary:</label>
+      <input type="number" class="form-control" name="salary" placeholder="Enter salary" required>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Location:</label>
+      <input type="text" class="form-control" name="location" placeholder="Enter your Location" required>
+    </div>
+    <div class="form-group">
+        <label for="experience">Year of Eperiences:</label>
+        <input type="text" class="form-control" name="yearofexperience" placeholder="Enter experience" required>
+      </div>
+      
+    <div class="form-group">
+        <label for="skills">Skills:</label>
+        <input type="text" class="form-control" name="skills" placeholder="Enter skills" required>
+      </div>
+
+   
+    <div class="form-group">
+      <label for="name">Company name:</label>
+      <input type="text" class="form-control" name="companyname" placeholder="Enter your company Name" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Post Job</button>
+  </form>
+</div>
+
+</body>
+</html>

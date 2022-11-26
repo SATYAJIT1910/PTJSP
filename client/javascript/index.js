@@ -228,7 +228,7 @@ app.get('/jobseeker/deleteuser', async (req, res) => {
 })
 app.get('/jobseeker/searchjobs/', async (req, res) => {
     try {
-        res.render('jobseeker/searchjob', { "data": JSON.parse(await queryAllJobposting()),"username":req.session.username });
+        res.render('jobseeker/searchjob', { "data": JSON.parse(await queryAllJobposting()), "username": req.session.username });
     } catch (error) {
         res.sendStatus(404);
     }
@@ -245,10 +245,62 @@ app.get('/jobseeker/apply/:JPID', async (req, res) => {
     }
 })
 
+// hr
+app.get('/hr/login', async (req, res) => {
+    res.sendFile(path.join(__dirname + '/static/hr/login.html'))
+})
+app.post('/hr/login/verfify', async (req, res) => {
+    let username=req.body.username
+    let password=req.body.password
+
+    if((username=='HR1' ||
+    username=='HR2' ||
+    username=='HR3' ||
+    username=='HR4') 
+    && password=='1234'){
+        req.session.username=username
+        req.session.loggedin=true
+        req.session.usertype='hr'
+        res.redirect('/hr/dashboard')
+    }else{
+        res.send("Invaild Credientials")
+    }
+})
+app.get('/hr/dashboard',(req,res)=>{
+    if(req.session.loggedin && req.session.usertype=='hr'){
+        res.sendFile(path.join(__dirname + '/static/hr/dashboard.html'))
+    }else{
+        res.send("Login Required")
+    }
+
+})
+app.get('/hr/jobpost',(req,res)=>{
+    res.sendFile(path.join(__dirname + '/static/hr/jobpost.html'))
+})
+app.post('/hr/createjob', async (req, res) => {
+    try {
+        let data=req.body;
+        data.HRId=req.session.username;
+        await createJobposting(req.body);
+        res.send("Job Posted Successfully");
+    } catch (error) {
+        res.sendStatus(400);
+    }
+})
+
+
+
+
+
+
+
+
+
 
 app.get('/logout', (req, res) => {
     req.session.loggedin = false
     req.session.username = undefined
+    req.session.usertype = undefined
     res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
 })
 
@@ -311,4 +363,11 @@ async function applyforjob(args) {
     await contract.submitTransaction('JobseekerContract:applyForJob', args)
     console.log('JobseekerContract:applyForJob-Transaction has been submitted');
 
+}
+
+// hr
+
+async function createJobposting(obj) {
+    await contract.submitTransaction('HRContract:createjobposting', JSON.stringify(obj))
+    console.log('HRContract:createjobposting-Transaction has been submitted');
 }
