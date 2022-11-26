@@ -180,16 +180,23 @@ app.get('/jobseeker/editprofile/:ID', async (req, res) => {
         res.send("Login Required")
     }
 })
-app.post('/jobseeker/update', async(req, res) => {
-   if(req.session.loggedin && req.session.username == req.body.jobseekerId){
-    console.log(req.body)
-    await updatejobseeker(JSON.stringify(req.body))
-    res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
-}else {
-    res.send("Login Required")
-}
+app.post('/jobseeker/update', async (req, res) => {
+    if (req.session.loggedin && req.session.username == req.body.jobseekerId) {
+        console.log(req.body)
+        await updatejobseeker(JSON.stringify(req.body))
+        res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
+    } else {
+        res.send("Login Required")
+    }
 })
-
+app.get('/jobseeker/viewfullprofile/:ID', async (req, res) => {
+    if (req.session.loggedin && req.session.username == req.params.ID) {
+        let data=JSON.parse(await readJobseeker(req.params.ID))
+        res.render('jobseeker/fullprofile',{"data":data});
+    } else {
+        res.send("Login Required")
+    }
+})
 
 
 
