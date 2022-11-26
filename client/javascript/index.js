@@ -172,6 +172,8 @@ app.get('/jobseeker/dashboard', async (req, res) => {
 app.get('/jobseeker/editprofile/:ID',(req,res)=>{
     if(req.session.loggedin && req.session.username==req.params.ID){
         res.render('jobseeker/update')
+    }else{
+        res.send("Login Required")
     }
 })
 
