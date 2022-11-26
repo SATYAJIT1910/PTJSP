@@ -35,6 +35,9 @@ app.use(session({
     // to be saved to the store
     saveUninitialized: true
 }))
+// Routers
+var admin = require('./routes/admin.js');
+app.use('/admin', admin);
 ////
 
 
@@ -48,80 +51,7 @@ app.listen(3000, async () => {
 app.get('/', (req, res) => {
     res.redirect("home.html")
 })
-app.get('/admin/login', (req, res) => {
-    res.sendFile(path.join(__dirname + '/static/admin/login.html'))
-})
-app.post('/admin/login/verfify', (req, res) => {
-    console.log(req.body)
-    if (req.body.username == 'admin' && req.body.password == '1234') {
-        req.session.loggedin = true;
-        req.session.username = 'admin';
-        res.redirect('/admin/dashboard')
-    } else {
-        res.send("Invaild Credientials")
-    }
-})
-app.get('/admin/dashboard', (req, res) => {
-    if (req.session.loggedin && req.session.username == 'admin') {
-        res.sendFile(path.join(__dirname + '/static/admin/dashboard.html'))
-    } else {
-        res.send("Login Required")
-    }
-})
-app.get('/admin/allusers', async (req, res) => {
 
-    if (req.session.loggedin && req.session.username == 'admin') {
-        try {
-            res.render('admin/admin_all_user', { "data": JSON.parse(await blockexecute.readAllJobSeeker()) })
-
-        } catch (error) {
-            res.sendStatus(error);
-        }
-    } else {
-        res.send("Login Required")
-    }
-})
-app.get('/admin/alljobs', async (req, res) => {
-    if (req.session.loggedin && req.session.username == 'admin') {
-        try {
-            res.render('admin/admin_all_jobs', { "data": JSON.parse(await blockexecute.queryAllJobposting()) });
-        } catch (error) {
-            res.sendStatus(404);
-        }
-    } else {
-        res.send("Login Required")
-    }
-}
-)
-
-app.get('/admin/deleteuser/:JSkey', async (req, res) => {
-    if (req.session.loggedin && req.session.username == 'admin') {
-        try {
-            let JSkey = req.params.JSkey;
-            await blockexecute.deleteJobSeeker(JSkey, true);
-            res.redirect('/admin/allusers')
-        } catch (error) {
-            res.sendStatus(400);
-        }
-    } else {
-        res.send("Login Required")
-    }
-}
-)
-
-app.get('/admin/deletejob/:jobpostingId', async (req, res) => {
-    if (req.session.loggedin && req.session.username == 'admin') {
-        try {
-
-            await blockexecute.deleteJobposting(req.params.jobpostingId, true)
-            res.redirect('/admin/alljobs');
-        } catch (error) {
-            res.sendStatus(400);
-        }
-    } else {
-        res.send("Login Required")
-    }
-})
 //jobseeker
 app.get('/jobseeker/login', async (req, res) => {
     res.sendFile(path.join(__dirname + '/static/jobseeker/login.html'))

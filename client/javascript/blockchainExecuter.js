@@ -104,6 +104,6 @@ module.exports={readAllJobSeeker,
     queryJobPostingByHRId,
     readJobseekerbyHR,
     updateStatus,
+    initcont,
     contract,
-    initcont
 }
