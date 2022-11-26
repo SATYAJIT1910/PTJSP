@@ -226,7 +226,7 @@ app.get('/jobseeker/deleteuser', async (req, res) => {
         req.session.username=undefined
         res.send("User Deleted.<a href='/'>Back to Home</a>");
 })
-app.get('/jobseeker/searchjobs/:ID',async(req,res)=>{
+app.get('/jobseeker/searchjobs/',async(req,res)=>{
         try {
             res.render('jobseeker/searchjob', { "data": JSON.parse(await queryAllJobposting()) });
         } catch (error) {
