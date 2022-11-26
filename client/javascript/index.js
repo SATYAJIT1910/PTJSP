@@ -198,6 +198,29 @@ app.get('/jobseeker/viewfullprofile/:ID', async (req, res) => {
     }
 })
 
+app.get('/jobseeker/updatepassword/',(req,res)=>{
+    if(req.session.loggedin){
+        res.sendFile(path.join(__dirname + '/static/jobseeker/updatepassword.html'))
+    }else{
+        res.send("Login Required")
+    }
+})
+app.post('/jobseeker/passwordupdate',async (req,res)=>{
+    let oldpasswd=req.body.oldpaswd;
+    let newpasswd=req.body.newpaswd;
+    let jobseekerId=req.session.username;
+    oldpasswd=crypto.createHash('sha256').update(oldpasswd).digest('hex');
+    let data=JSON.parse(await getjobseekerPassword(jobseekerId))
+    let originalPassword=data.password;
+    if(oldpasswd==originalPassword){
+        await updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
+        res.send("<b>Password Sucessfully Updated</b>")
+    }else{
+        res.send("<b>Old Password doesn't match</b>")
+    }
+
+})
+
 
 
 app.get('/logout', (req, res) => {
@@ -205,6 +228,8 @@ app.get('/logout', (req, res) => {
     req.session.username = undefined
     res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
 })
+
+
 // Blockchain executer methods
 async function readAllJobSeeker() {
     const result = await contract.evaluateTransaction('AdminContract:queryAllJobSeeker');
@@ -248,4 +273,14 @@ async function readJobseeker(jobseekerId) {
 async function updatejobseeker(args) {
     await contract.submitTransaction('JobseekerContract:updatejobseeker', args)
     console.log('JobseekerContract:updatejobseeker-Transaction has been submitted');
+}
+async function updatejobseekerPassword(args) {
+    await contract.submitTransaction('JobseekerContract:updatejobseekerPassword', args)
+    console.log('JobseekerContract:updatejobseekerPassword-Transaction has been submitted');
+
+}
+async function getjobseekerPassword(jobseekerId) {
+    const result = await contract.evaluateTransaction('JobseekerContract:getjobseekerPassword', jobseekerId);
+    console.log(`JobseekerContract:getjobseekerPassword-Transaction has been evaluated, result is: ${result.toString()}`);
+    return result;
 }
