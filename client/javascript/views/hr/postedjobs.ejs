@@ -236,7 +236,7 @@
                       <h2>Candidates List</h2>  
                     <table class="table table-striped">
                       <% for(var j=0;j < data[i].Record.appliedCandidates.length;j++){ %>
-                        <tr><td class="text-center"><a href=<%="/hr/candidate/"+ data[i].Record.appliedCandidates[j]%>><%=data[i].Record.appliedCandidates[j]%></a><br></td></tr>
+                        <tr><td class="text-center"><a href=<%="/hr/candidate/"+ data[i].Record.jobpostingId + "/" + data[i].Record.appliedCandidates[j]%>><%=data[i].Record.appliedCandidates[j]%></a><br></td></tr>
                         <%}%>
                     </table>
                         <button type="btn btn-primary"  onclick="closePopup()">Close</button>

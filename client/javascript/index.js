@@ -314,15 +314,25 @@ app.get('/hr/deletejob/:jobpostingId', async (req, res) => {
     }
 })
 
-app.get('/hr/appliedcandidates/:jobpostingId',async (req,res)=>{
+app.get('/hr/candidate/:jobpostingId/:jobseekerId',async (req,res)=>{
     try{
-        let jobpostingId=req.params.jobpostingId
+        let data=JSON.parse(await readJobseekerbyHR(req.params.jobseekerId, req.params.jobpostingId, req.session.username));
+        res.render('hr/candidateprofile',{"data":data,"jobpostingId":req.params.jobpostingId})
         
     }catch(error){
-
+        console.log(error)
     }
 })
-
+app.get('/hr/hired/:jobpostingId/:jobseekerId/', async (req, res) => {
+    try {
+        const jobseekerId = req.params.jobseekerId;
+        const jobpostingId = req.params.jobpostingId;
+        await updateStatus(jobseekerId, jobpostingId)
+        res.send("<b>Candidate Hired Successfully</b>");
+    } catch (error) {
+        res.sendStatus(400);
+    }
+})
 
 
 
@@ -406,4 +416,13 @@ async function queryJobPostingByHRId(HRId) {
     const result = await contract.evaluateTransaction('HRContract:queryJobPostingByHRId', HRId);
     console.log(`HRContract:queryJobPostingByHRId-Transaction has been evaluated, result is: ${result.toString()}`);
     return result;
+}
+async function readJobseekerbyHR(jobseekerId, jobpostingId, HRId) {
+    const result = await contract.evaluateTransaction('HRContract:readJobseekerbyHR', jobseekerId, jobpostingId, HRId);
+    console.log(`HRContract:readJobseekerbyHR-Transaction has been evaluated, result is: ${result.toString()}`);
+    return result;
+}
+async function updateStatus(jobseekerId, jobpostingId) {
+    await contract.submitTransaction('HRContract:updateStatus', jobseekerId, jobpostingId)
+    console.log('HRContract:updateStatus-Transaction has been submitted');
 }
