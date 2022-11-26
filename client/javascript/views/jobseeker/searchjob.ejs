@@ -228,12 +228,16 @@
                         <%= data[i].Record.yearofexperience %>
                     </td>
                     <td>
-                        <% if(data[i].Record.appliedCandidates.includes(username)){ %>
-                            Already Applied
-                        <%}else{%>
-                            
+                        <% if(data[i].Record.hired!=''){ %>
+                            <%= data[i].Record.hired + " is hired"%>
+                        <% } %>
+
+                        <% if(data[i].Record.hired =='' && data[i].Record.appliedCandidates.includes(username)){ %>
+                            Already Applied 
+                        <% } %>
+                        
+                        <% if(data[i].Record.hired =='' && !(data[i].Record.appliedCandidates.includes(username))){ %>
                             <a href=<%="/jobseeker/apply/"+data[i].Record.jobpostingId%>>Apply</a>
-                         
                         <%}%>
                         
 
