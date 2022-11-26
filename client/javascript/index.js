@@ -218,10 +218,14 @@ app.post('/jobseeker/passwordupdate',async (req,res)=>{
     }else{
         res.send("<b>Old Password doesn't match</b>")
     }
-
 })
 
-
+app.get('/jobseeker/deleteuser', async (req, res) => {
+        await deleteJobSeeker(req.session.username, false);
+        req.session.loggedin=false
+        req.session.username=undefined
+        res.send("User Deleted.<a href='/'>Back to Home</a>");
+})
 
 app.get('/logout', (req, res) => {
     req.session.loggedin = false
