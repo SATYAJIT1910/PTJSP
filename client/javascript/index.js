@@ -6,9 +6,7 @@
 
 let contract;
 const crypto = require('crypto');
-const cont = require('./contract_invoke')
-const { Gateway, Wallets } = require('fabric-network');
-const fs = require('fs');
+const blockexecute=require('./blockchainExecuter')
 const path = require('path');
 const express = require("express");
 const app = express();
@@ -39,17 +37,12 @@ app.use(session({
 }))
 ////
 
-async function initcont() {
-    // This function initializes the contract.
-    contract = await cont.initContract();
-    console.log(contract)
-}
 
 // This function starts the express server
 app.listen(3000, async () => {
     console.log("Started on PORT 3000");
     console.log("Server Started Successfully");
-    initcont();
+    blockexecute.initcont();
 })
 // root
 app.get('/', (req, res) => {
@@ -79,10 +72,10 @@ app.get('/admin/allusers', async (req, res) => {
 
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
-            res.render('admin/admin_all_user', { "data": JSON.parse(await readAllJobSeeker()) })
+            res.render('admin/admin_all_user', { "data": JSON.parse(await blockexecute.readAllJobSeeker()) })
 
         } catch (error) {
-            res.sendStatus(404);
+            res.sendStatus(error);
         }
     } else {
         res.send("Login Required")
@@ -91,7 +84,7 @@ app.get('/admin/allusers', async (req, res) => {
 app.get('/admin/alljobs', async (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
-            res.render('admin/admin_all_jobs', { "data": JSON.parse(await queryAllJobposting()) });
+            res.render('admin/admin_all_jobs', { "data": JSON.parse(await blockexecute.queryAllJobposting()) });
         } catch (error) {
             res.sendStatus(404);
         }
@@ -105,7 +98,7 @@ app.get('/admin/deleteuser/:JSkey', async (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
             let JSkey = req.params.JSkey;
-            await deleteJobSeeker(JSkey, true);
+            await blockexecute.deleteJobSeeker(JSkey, true);
             res.redirect('/admin/allusers')
         } catch (error) {
             res.sendStatus(400);
@@ -120,7 +113,7 @@ app.get('/admin/deletejob/:jobpostingId', async (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         try {
 
-            await deleteJobposting(req.params.jobpostingId, true)
+            await blockexecute.deleteJobposting(req.params.jobpostingId, true)
             res.redirect('/admin/alljobs');
         } catch (error) {
             res.sendStatus(400);
@@ -139,7 +132,7 @@ app.post('/jobseeker/login/verfify', async (req, res) => {
     let password = crypto.createHash('sha256').update(req.body.password).digest('hex');
 
     try {
-        let usrobj = JSON.parse(await readJobseeker(username))
+        let usrobj = JSON.parse(await blockexecute.readJobseeker(username))
         let usroriginalpassword = usrobj.password
         if (usroriginalpassword == password) {
             req.session.loggedin = true
@@ -155,7 +148,7 @@ app.post('/jobseeker/login/verfify', async (req, res) => {
 
 app.post('/createuser', async (req, res) => {
     try {
-        await createjobseeker(JSON.stringify(req.body));
+        await blockexecute.createjobseeker(JSON.stringify(req.body));
         console.log(req.body)
         res.send('Job Seeker Created Successfully. Back to <a href="/jobseeker/login">Login</a>');
     } catch (error) {
@@ -171,7 +164,7 @@ app.get('/jobseeker/dashboard', async (req, res) => {
 
 app.get('/jobseeker/editprofile/:ID', async (req, res) => {
     if (req.session.loggedin && req.session.username == req.params.ID) {
-        let usrobj = JSON.parse(await readJobseeker(req.params.ID))
+        let usrobj = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
         console.log("The data passed is -> ")
         console.log(usrobj)
         console.log("\n\n")
@@ -183,7 +176,7 @@ app.get('/jobseeker/editprofile/:ID', async (req, res) => {
 app.post('/jobseeker/update', async (req, res) => {
     if (req.session.loggedin && req.session.username == req.body.jobseekerId) {
         console.log(req.body)
-        await updatejobseeker(JSON.stringify(req.body))
+        await blockexecute.updatejobseeker(JSON.stringify(req.body))
         res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
     } else {
         res.send("Login Required")
@@ -191,7 +184,7 @@ app.post('/jobseeker/update', async (req, res) => {
 })
 app.get('/jobseeker/viewfullprofile/:ID', async (req, res) => {
     if (req.session.loggedin && req.session.username == req.params.ID) {
-        let data = JSON.parse(await readJobseeker(req.params.ID))
+        let data = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
         res.render('jobseeker/fullprofile', { "data": data });
     } else {
         res.send("Login Required")
@@ -210,10 +203,10 @@ app.post('/jobseeker/passwordupdate', async (req, res) => {
     let newpasswd = req.body.newpaswd;
     let jobseekerId = req.session.username;
     oldpasswd = crypto.createHash('sha256').update(oldpasswd).digest('hex');
-    let data = JSON.parse(await getjobseekerPassword(jobseekerId))
+    let data = JSON.parse(await blockexecute.getjobseekerPassword(jobseekerId))
     let originalPassword = data.password;
     if (oldpasswd == originalPassword) {
-        await updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
+        await blockexecute.updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
         res.send("<b>Password Sucessfully Updated</b>")
     } else {
         res.send("<b>Old Password doesn't match</b>")
@@ -221,14 +214,14 @@ app.post('/jobseeker/passwordupdate', async (req, res) => {
 })
 
 app.get('/jobseeker/deleteuser', async (req, res) => {
-    await deleteJobSeeker(req.session.username, false);
+    await blockexecute.deleteJobSeeker(req.session.username, false);
     req.session.loggedin = false
     req.session.username = undefined
     res.send("User Deleted.<a href='/'>Back to Home</a>");
 })
 app.get('/jobseeker/searchjobs/', async (req, res) => {
     try {
-        res.render('jobseeker/searchjob', { "data": JSON.parse(await queryAllJobposting()), "username": req.session.username });
+        res.render('jobseeker/searchjob', { "data": JSON.parse(await blockexecute.queryAllJobposting()), "username": req.session.username });
     } catch (error) {
         res.sendStatus(404);
     }
@@ -238,7 +231,7 @@ app.get('/jobseeker/apply/:JPID', async (req, res) => {
     const jobseekerId = req.session.username;
     const jobpostingId = req.params.JPID;
     if (req.session.loggedin) {
-        await applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
+        await blockexecute.applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
         res.send("You have sucessfully Applied. Thank You")
     } else {
         res.redirect("/jobseeker/login")
@@ -285,7 +278,7 @@ app.post('/hr/createjob', async (req, res) => {
     try {
         let data=req.body;
         data.HRId=req.session.username;
-        await createJobposting(req.body);
+        await blockexecute.createJobposting(req.body);
         res.send("Job Posted Successfully");
     } catch (error) {
         res.sendStatus(400);
@@ -294,7 +287,7 @@ app.post('/hr/createjob', async (req, res) => {
 app.get('/hr/viewposts',async(req,res)=>{
     if(req.session.loggedin && req.session.usertype=='hr'){
         try {
-            let data=JSON.parse(await queryJobPostingByHRId(req.session.username));
+            let data=JSON.parse(await blockexecute.queryJobPostingByHRId(req.session.username));
             res.render('hr/postedjobs',{"data":data})
         } catch (error) {
             res.sendStatus(404);
@@ -307,7 +300,7 @@ app.get('/hr/viewposts',async(req,res)=>{
 
 app.get('/hr/deletejob/:jobpostingId', async (req, res) => {
     try {
-        await deleteJobposting(req.params.jobpostingId, false)
+        await blockexecute.deleteJobposting(req.params.jobpostingId, false)
         res.redirect("/hr/viewposts");
     } catch (error) {
         res.sendStatus("Failed to Delete");
@@ -316,7 +309,7 @@ app.get('/hr/deletejob/:jobpostingId', async (req, res) => {
 
 app.get('/hr/candidate/:jobpostingId/:jobseekerId',async (req,res)=>{
     try{
-        let data=JSON.parse(await readJobseekerbyHR(req.params.jobseekerId, req.params.jobpostingId, req.session.username));
+        let data=JSON.parse(await blockexecute.readJobseekerbyHR(req.params.jobseekerId, req.params.jobpostingId, req.session.username));
         res.render('hr/candidateprofile',{"data":data,"jobpostingId":req.params.jobpostingId})
         
     }catch(error){
@@ -327,16 +320,12 @@ app.get('/hr/hired/:jobpostingId/:jobseekerId/', async (req, res) => {
     try {
         const jobseekerId = req.params.jobseekerId;
         const jobpostingId = req.params.jobpostingId;
-        await updateStatus(jobseekerId, jobpostingId)
+        await blockexecute.updateStatus(jobseekerId, jobpostingId)
         res.send("<b>Candidate Hired Successfully</b>");
     } catch (error) {
         res.sendStatus(400);
     }
 })
-
-
-
-
 
 app.get('/logout', (req, res) => {
     req.session.loggedin = false
@@ -345,84 +334,3 @@ app.get('/logout', (req, res) => {
     res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
 })
 
-
-// Blockchain executer methods
-async function readAllJobSeeker() {
-    const result = await contract.evaluateTransaction('AdminContract:queryAllJobSeeker');
-    console.log(`AdminContract:queryAllJobSeeker-Transaction has been evaluated, result is: ${result.toString()}`);
-    return result;
-
-}
-async function queryAllJobposting() {
-    const result = await contract.evaluateTransaction('AdminContract:queryAllJobPosting');
-    console.log(`AdminContract:queryAllJobPosting-Transaction has been evaluated, result is: ${result.toString()}`);
-    return result;
-}
-async function deleteJobSeeker(JSkey, admin) {
-    if (admin) {
-        await contract.submitTransaction('AdminContract:deleteJobseeker', JSkey)
-        console.log('AdminContract:deleteJobseeker-Transaction has been submitted');
-    } else {
-        await contract.submitTransaction('JobseekerContract:deleteJobseeker', JSkey)
-        console.log('JobseekerContract:deleteJobseeker-Transaction has been submitted');
-    }
-}
-async function deleteJobposting(jobpostingId, admin) {
-    if (admin) {
-        await contract.submitTransaction('AdminContract:deletejobposting', jobpostingId)
-        console.log('AdminContract:deletejobposting-Transaction has been submitted');
-    } else {
-        await contract.submitTransaction('HRContract:deletejobposting', jobpostingId)
-        console.log('HRContract:deletejobposting-Transaction has been submitted');
-    }
-}
-//Jobseeker
-async function createjobseeker(args) {
-    await contract.submitTransaction('JobseekerContract:createjobseeker', args)
-    console.log('JobseekerContract:createjobseeker-Transaction has been submitted');
-}
-async function readJobseeker(jobseekerId) {
-    const result = await contract.evaluateTransaction('JobseekerContract:readJobseeker', jobseekerId);
-    console.log(`JobseekerContract:readJobseeker-Transaction has been evaluated, result is: ${result.toString()}`);
-    return result;
-}
-async function updatejobseeker(args) {
-    await contract.submitTransaction('JobseekerContract:updatejobseeker', args)
-    console.log('JobseekerContract:updatejobseeker-Transaction has been submitted');
-}
-async function updatejobseekerPassword(args) {
-    await contract.submitTransaction('JobseekerContract:updatejobseekerPassword', args)
-    console.log('JobseekerContract:updatejobseekerPassword-Transaction has been submitted');
-
-}
-async function getjobseekerPassword(jobseekerId) {
-    const result = await contract.evaluateTransaction('JobseekerContract:getjobseekerPassword', jobseekerId);
-    console.log(`JobseekerContract:getjobseekerPassword-Transaction has been evaluated, result is: ${result.toString()}`);
-    return result;
-}
-async function applyforjob(args) {
-    await contract.submitTransaction('JobseekerContract:applyForJob', args)
-    console.log('JobseekerContract:applyForJob-Transaction has been submitted');
-
-}
-
-// hr
-
-async function createJobposting(obj) {
-    await contract.submitTransaction('HRContract:createjobposting', JSON.stringify(obj))
-    console.log('HRContract:createjobposting-Transaction has been submitted');
-}
-async function queryJobPostingByHRId(HRId) {
-    const result = await contract.evaluateTransaction('HRContract:queryJobPostingByHRId', HRId);
-    console.log(`HRContract:queryJobPostingByHRId-Transaction has been evaluated, result is: ${result.toString()}`);
-    return result;
-}
-async function readJobseekerbyHR(jobseekerId, jobpostingId, HRId) {
-    const result = await contract.evaluateTransaction('HRContract:readJobseekerbyHR', jobseekerId, jobpostingId, HRId);
-    console.log(`HRContract:readJobseekerbyHR-Transaction has been evaluated, result is: ${result.toString()}`);
-    return result;
-}
-async function updateStatus(jobseekerId, jobpostingId) {
-    await contract.submitTransaction('HRContract:updateStatus', jobseekerId, jobpostingId)
-    console.log('HRContract:updateStatus-Transaction has been submitted');
-}
