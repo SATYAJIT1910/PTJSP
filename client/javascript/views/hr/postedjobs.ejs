@@ -229,22 +229,31 @@
                         <%= data[i].Record.yearofexperience %>
                     </td>
                     <td>
+                        <% if(data[i].Record.hired==''){%>
                         <div class="container">
-                    <button type="apply" class="btn" onclick="openPopup()"  value="Apply">Check</button>
-                    <div class="popup" id="popup">
-                      
-                      <h2>Candidates List</h2>  
-                    <table class="table table-striped">
-                      <% for(var j=0;j < data[i].Record.appliedCandidates.length;j++){ %>
-                        <tr><td class="text-center"><a href=<%="/hr/candidate/"+ data[i].Record.jobpostingId + "/" + data[i].Record.appliedCandidates[j]%>><%=data[i].Record.appliedCandidates[j]%></a><br></td></tr>
-                        <%}%>
-                    </table>
-                        <button type="btn btn-primary"  onclick="closePopup()">Close</button>
-                    </div>
-                </div>
+                            <button type="apply" class="btn" onclick="openPopup()" value="Apply">Check</button>
+                            <div class="popup" id="popup">
+
+                                <h2>Candidates List</h2>
+                                <table class="table table-striped">
+                                    <% for(var j=0;j < data[i].Record.appliedCandidates.length;j++){ %>
+                                        <tr>
+                                            <td class="text-center"><a href=<%="/hr/candidate/" +
+                                                    data[i].Record.jobpostingId + "/" +
+                                                    data[i].Record.appliedCandidates[j]%>>
+                                                    <%=data[i].Record.appliedCandidates[j]%></a><br></td>
+                                        </tr>
+                                        <%}%>
+                                </table>
+                                <button type="btn btn-primary" onclick="closePopup()">Close</button>
+                            </div>
+                            <%}else{%>
+                            <%=data[i].Record.hired%> is hired
+                            <%}%>
+                        </div>
                     </td>
                     <td>
-                        <a href=<%="/hr/deletejob/"+data[i].Record.jobpostingId%>>Delete</a>
+                        <a href=<%="/hr/deletejob/" +data[i].Record.jobpostingId%>>Delete</a>
                     </td>
 
                 </tr>
