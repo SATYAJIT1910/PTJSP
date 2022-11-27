@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const blockexecute = require('../blockchainExecuter')
+import { Router } from 'express';
+let router = Router();
+import * as blockexecute from '../blockchainExecuter';
 
 // admin login
 router.get('/login', (req, res) => {
@@ -32,6 +32,7 @@ router.get('/allusers', async (req, res) => {
             res.render('admin/admin_all_user', { "data": JSON.parse(await blockexecute.readAllJobSeeker()) })
 
         } catch (error) {
+            console.log(error)
             res.sendStatus(501);
         }
     } else {
@@ -81,4 +82,4 @@ router.get('/deletejob/:jobpostingId', async (req, res) => {
     }
 })
 
-module.exports = router;
+export default router;

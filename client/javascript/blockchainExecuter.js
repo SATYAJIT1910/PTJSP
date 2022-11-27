@@ -1,13 +1,9 @@
 let contract;
-const crypto = require('crypto');
-const cont = require('./contract_invoke')
-const { Gateway, Wallets } = require('fabric-network');
-const fs = require('fs');
-const path = require('path');
+import { initContract } from './contract_invoke';
 
 async function initcont() {
     // This function initializes the contract.
-    contract = await cont.initContract();
+    contract = await initContract();
     console.log(contract)
 }
 // Admin
@@ -91,7 +87,7 @@ async function updateStatus(jobseekerId, jobpostingId) {
     console.log('HRContract:updateStatus-Transaction has been submitted');
 }
 
-module.exports = {
+export {
     readAllJobSeeker,
     queryAllJobposting,
     deleteJobSeeker,
@@ -107,5 +103,4 @@ module.exports = {
     readJobseekerbyHR,
     updateStatus,
     initcont,
-    contract,
 }

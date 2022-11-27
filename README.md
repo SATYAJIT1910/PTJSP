@@ -45,7 +45,7 @@ node registerUser.js
 
 To start the server use 
 ```
-node invoke.js
+npm start
 ```
 ## Important Points
 

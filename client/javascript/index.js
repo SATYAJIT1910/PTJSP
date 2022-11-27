@@ -2,23 +2,23 @@
  * @author Satyajit Ghosh
  * @date 2022-11-25
  */
-'use strict';
+// 'use strict';
 
-const blockexecute = require('./blockchainExecuter')
-const path = require('path');
-const express = require("express");
+import {initcont} from './blockchainExecuter';
+import { join } from 'path';
+import express from "express";
 const app = express();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+import { urlencoded, json } from "body-parser";
+app.use(urlencoded({ extended: true }));
+app.use(json());
 //Static files serve Middleware
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(join(__dirname, 'static')));
 // Public
 app.use(express.static('public'));
 // Session-management
-const session = require('express-session')
+import session from 'express-session';
 // Session Setup
 app.use(session({
 
@@ -34,9 +34,9 @@ app.use(session({
     saveUninitialized: true
 }))
 // Routers
-var admin = require('./routes/admin.js');
-var hr = require('./routes/hr.js');
-var jobseeker = require('./routes/jobseeker.js');
+import admin from './routes/admin.js';
+import hr from './routes/hr.js';
+import jobseeker from './routes/jobseeker.js';
 
 app.use('/admin', admin);
 app.use('/jobseeker', jobseeker);
@@ -47,7 +47,7 @@ app.use('/hr', hr);
 app.listen(3000, async () => {
     console.log("Started on PORT 3000");
     console.log("Server Started Successfully");
-    blockexecute.initcont();
+    initcont();
 })
 // root directory
 app.get('/', (req, res) => {

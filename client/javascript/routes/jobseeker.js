@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-const crypto = require('crypto');
-const blockexecute = require('../blockchainExecuter')
+import { Router } from 'express';
+let router = Router();
+import { createHash } from 'crypto';
+import * as blockexecute from '../blockchainExecuter';
 // login page for jobseeker
 router.get('/login', async (req, res) => {
     res.sendFile('/static/jobseeker/login.html', { root: '.' })
@@ -10,7 +10,7 @@ router.get('/login', async (req, res) => {
 router.post('/login/verfify', async (req, res) => {
     console.log(req.body)
     let username = req.body.username;
-    let password = crypto.createHash('sha256').update(req.body.password).digest('hex');
+    let password = createHash('sha256').update(req.body.password).digest('hex');
 
     try {
         let usrobj = JSON.parse(await blockexecute.readJobseeker(username))
@@ -22,7 +22,7 @@ router.post('/login/verfify', async (req, res) => {
         } else {
             res.send("Invaild Credientials");
         }
-    } catch {
+    } catch (error){
         res.send("User Doesn't Exits");
     }
 })
@@ -50,7 +50,7 @@ router.get('/editprofile/:ID', async (req, res) => {
 
             let usrobj = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
             res.render('jobseeker/update', { "data": usrobj })
-        } catch {
+        } catch (error){
             res.sendStatus(500)
         }
     } else {
@@ -64,7 +64,7 @@ router.post('/update', async (req, res) => {
 
             await blockexecute.updatejobseeker(JSON.stringify(req.body))
             res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
-        } catch {
+        } catch (error){
             res.sendStatus(500)
         }
     } else {
@@ -78,7 +78,7 @@ router.get('/viewfullprofile/:ID', async (req, res) => {
 
             let data = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
             res.render('jobseeker/fullprofile', { "data": data });
-        } catch {
+        } catch (error){
             res.sendStatus(500)
         }
     } else {
@@ -98,7 +98,7 @@ router.post('/updatepassword', async (req, res) => {
     let oldpasswd = req.body.oldpaswd;
     let newpasswd = req.body.newpaswd;
     let jobseekerId = req.session.username;
-    oldpasswd = crypto.createHash('sha256').update(oldpasswd).digest('hex');
+    oldpasswd = createHash('sha256').update(oldpasswd).digest('hex');
     let data = JSON.parse(await blockexecute.getjobseekerPassword(jobseekerId))
     let originalPassword = data.password;
     if (oldpasswd == originalPassword) {
@@ -106,7 +106,7 @@ router.post('/updatepassword', async (req, res) => {
 
             await blockexecute.updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
             res.send("<b>Password Sucessfully Updated</b>")
-        } catch {
+        } catch (error){
             res.sendStatus(500)
         }
     } else {
@@ -120,7 +120,7 @@ router.get('/deleteuser', async (req, res) => {
         req.session.loggedin = false
         req.session.username = undefined
         res.send("User Deleted.<a href='/'>Back to Home</a>");
-    } catch {
+    } catch (error){
         res.sendStatus(500)
     }
 })
@@ -142,7 +142,7 @@ router.get('/apply/:JPID', async (req, res) => {
 
             await blockexecute.applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
             res.send("You have sucessfully Applied. Thank You")
-        } catch {
+        } catch (error){
             res.sendStatus(500)
         }
     } else {
@@ -150,4 +150,4 @@ router.get('/apply/:JPID', async (req, res) => {
     }
 })
 
-module.exports = router;
+export default router;

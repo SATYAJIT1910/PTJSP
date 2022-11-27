@@ -1,14 +1,14 @@
-const { Gateway, Wallets } = require('fabric-network');
-const fs = require('fs');
-const path = require('path');
+import { Gateway, Wallets } from 'fabric-network';
+import { readFileSync } from 'fs';
+import { resolve, join } from 'path';
 
 async function initContract() {
     // load the network configuration
-    const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
-    let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
+    const ccpPath = resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
+    let ccp = JSON.parse(readFileSync(ccpPath, 'utf8'));
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), 'wallet');
+    const walletPath = join(process.cwd(), 'wallet');
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
@@ -32,4 +32,4 @@ async function initContract() {
     return contract;
 }
 
-module.exports ={ initContract };
+export { initContract };

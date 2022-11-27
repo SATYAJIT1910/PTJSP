@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const blockexecute = require('../blockchainExecuter')
+import { Router } from 'express';
+let router = Router();
+import * as blockexecute from '../blockchainExecuter';
 //login for HR
 router.get('/login', async (req, res) => {
     res.sendFile('/static/hr/login.html', { root: '.' })
@@ -114,4 +114,4 @@ router.get('/hired/:jobpostingId/:jobseekerId/', async (req, res) => {
     }
 })
 
-module.exports = router;
+export default router;
