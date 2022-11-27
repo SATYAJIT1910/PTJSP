@@ -1,6 +1,8 @@
 import { Router } from 'express';
 let router = Router();
 import * as blockexecute from '../blockchainExecuter';
+import dotenv from 'dotenv'
+dotenv.config()
 
 // admin login
 router.get('/login', (req, res) => {
@@ -8,7 +10,7 @@ router.get('/login', (req, res) => {
 })
 // verfication of admin credentials
 router.post('/login/verfify', (req, res) => {
-    if (req.body.username == 'admin' && req.body.password == '1234') {
+    if (req.body.username == process.env.ADMIN_ID && req.body.password == process.env.ADMIN_KEY) {
         req.session.loggedin = true;
         req.session.username = 'admin';
         res.redirect('/admin/dashboard')

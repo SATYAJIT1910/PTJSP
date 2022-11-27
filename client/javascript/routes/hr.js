@@ -10,11 +10,12 @@ router.post('/login/verfify', async (req, res) => {
     let username = req.body.username
     let password = req.body.password
 
-    if ((username == 'HR1' ||
-        username == 'HR2' ||
-        username == 'HR3' ||
-        username == 'HR4')
-        && password == '1234') {
+    // We are taking 4 fixed HR accounts for demonstration purpose
+    if ((username == process.env.HR1_ID && password == process.env.HR1_KEY ||
+        username == process.env.HR2_ID && password == process.env.HR2_KEY ||
+        username == process.env.HR3_ID && password == process.env.HR3_KEY ||
+        username == process.env.HR4_ID && password == process.env.HR4_KEY)
+    ) {
         req.session.username = username
         req.session.loggedin = true
         req.session.usertype = 'hr'
