@@ -1,4 +1,4 @@
-### Install all the requirements :
+### Requirements :
 1. Node v10.19.0
 2. NPM v10.19.0
 3. Docker version 20.10.12, build 20.10.12-0ubuntu2~20.04.1
@@ -42,8 +42,24 @@ Next run the following commands to register admin and user in blockchain
 node enrollAdmin.js
 node registerUser.js
 ```
+Make a .env file inside <code>client/javascript/</code> . It should look like below sample -
+```
+# .env file
+ADMIN_ID="your_admin_id"
+ADMIN_KEY="your_admin_password"
 
-To start the server use 
+HR1_ID='your_hr1_id'
+HR2_ID='your_hr2_id'
+HR3_ID='your_hr3_id'
+HR4_ID='your_hr4_id'
+
+HR1_KEY="your_hr1_password"
+HR2_KEY="your_hr2_password"
+HR3_KEY="your_hr3_password"
+HR4_KEY="your_hr4_password"
+```
+
+To start the server use -
 ```
 npm start
 ```
@@ -78,7 +94,7 @@ and <code>registerUser.js</code>
 
 <a href="https://stackoverflow.com/a/48957722">https://stackoverflow.com/a/48957722</a>
 
-<li>API error (404): network _test not found</li>
+<!-- <li>API error (404): network _test not found</li>
 
 ```
 error: [Transaction]: Error: No valid responses from any peers. Errors:
@@ -91,11 +107,58 @@ f44d6a437ad49d1da951f6a01c6d1eed4f85b8b1f5a08617fe7: error starting container: e
 Run the following command in the terminal
 ```
 COMPOSE_PROJECT_NAME=docker
-```
+``` -->
+<hr>
+
+## Team Members
+<hr>
+<table>
+    <tr>
+        <td align="center">
+            <a href="https://www.linkedin.com/in/satyajit1910/">
+                <img src="https://i.postimg.cc/pd2f31Pd/satya.jpg" width="120px;" alt=""/><p><b>Satyajit Ghosh <br>(Team Lead, Blockchain & Back-end)</b></p><br />
+                <!-- <sub><b>brookmg</b></sub> -->
+            </a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/Rakib0153">
+                <img src="https://i.postimg.cc/SxW0gjKh/rakibul.jpg" width="120px;" alt=""/>
+                <p><b>Rakibul Islam<br>(Front-end)</b></p><br />
+            </a>
+        </td>
+        <td align="center">
+            <a href="https://www.linkedin.com/in/aditya-jaman-85892524b/">
+                <img src="https://i.postimg.cc/SNLRMQpn/aditya.jpg" width="120px;" alt=""/>
+                <p><b>Aditya Jaman<br>(Front-end)</b></p><br />
+            </a>
+        </td>
+            <td align="center">
+        <a href="https://www.linkedin.com/in/aratrika-bose-0503231b3/">
+            <img src="https://i.postimg.cc/5yxGKm6d/aratrika.jpg" width="120px;" alt=""/>
+            <p><b>Aratrika Bose<br>(Presention & Research)</b></p><br />
+        </a>
+    </td>
+        <td align="center">
+    <a href="https://vidwan.inflibnet.ac.in/profile/163702">
+        <img src="https://i.postimg.cc/xCN3PN0G/abhishekroy.jpg" width="120px;" alt=""/>
+        <p><b>Dr. Abhishek Roy <br>(Supervisor)</b></p>
+        <br />
+    </a>
+</td>
+            </td>
+        <td align="center">
+    <a href="https://www.linkedin.com/in/aghosh0605/">
+        <img src="https://i.postimg.cc/yxtm31qQ/ani.jpg" width="120px;" alt=""/>
+        <p><b>Aniruddha Ghosh<br>(External Technical Reviewer)</b></p><br />
+    </a>
+</td>
+</table>
+
+
 
 
 <hr>
-This documentation is written by <i>Satyajit Ghosh</i> (satyajit.ghosh@stu.adamasuniversity.ac.in)
+This documentation is written by <i>Satyajit Ghosh</i> (satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in)
 <hr>
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
