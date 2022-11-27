@@ -33,7 +33,7 @@ router.post('/createuser', async (req, res) => {
         console.log(req.body)
         res.send('Job Seeker Created Successfully. Back to <a href="/jobseeker/login">Login</a>');
     } catch (error) {
-        res.sendStatus(500);
+        res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
     }
 
 })
@@ -51,10 +51,10 @@ router.get('/editprofile/:ID', async (req, res) => {
             let usrobj = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
             res.render('jobseeker/update', { "data": usrobj })
         } catch (error){
-            res.sendStatus(500)
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 // This sends the updated record of job seeker to the blockchain
@@ -65,10 +65,10 @@ router.post('/update', async (req, res) => {
             await blockexecute.updatejobseeker(JSON.stringify(req.body))
             res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
         } catch (error){
-            res.sendStatus(500)
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 // Shows full profile of job seeker
@@ -79,10 +79,10 @@ router.get('/viewfullprofile/:ID', async (req, res) => {
             let data = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
             res.render('jobseeker/fullprofile', { "data": data });
         } catch (error){
-            res.sendStatus(500)
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 // Update password page for job seeker
@@ -90,7 +90,7 @@ router.get('/updatepassword', (req, res) => {
     if (req.session.loggedin) {
         res.sendFile('/static/jobseeker/updatepassword.html', { root: '.' })
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 // Sends updated password to the blockchain
@@ -107,7 +107,7 @@ router.post('/updatepassword', async (req, res) => {
             await blockexecute.updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
             res.send("<b>Password Sucessfully Updated</b>")
         } catch (error){
-            res.sendStatus(500)
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
         res.send("<b>Old Password doesn't match</b>")
@@ -121,7 +121,7 @@ router.get('/deleteuser', async (req, res) => {
         req.session.username = undefined
         res.send("User Deleted.<a href='/'>Back to Home</a>");
     } catch (error){
-        res.sendStatus(500)
+        res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
     }
 })
 // Job seeker searches for job
@@ -129,7 +129,7 @@ router.get('/searchjobs/', async (req, res) => {
     try {
         res.render('jobseeker/searchjob', { "data": JSON.parse(await blockexecute.queryAllJobposting()), "username": req.session.username });
     } catch (error) {
-        res.sendStatus(500);
+        res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
     }
 })
 // Job seeker apply for different jobs
@@ -143,7 +143,7 @@ router.get('/apply/:JPID', async (req, res) => {
             await blockexecute.applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
             res.send("You have sucessfully Applied. Thank You")
         } catch (error){
-            res.sendStatus(500)
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
         res.redirect("/jobseeker/login")

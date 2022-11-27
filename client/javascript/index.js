@@ -55,9 +55,10 @@ app.get('/', (req, res) => {
 })
 // This is used to log out the different actors of portal
 app.get('/logout', (req, res) => {
-    req.session.loggedin = false
-    req.session.username = undefined
-    req.session.usertype = undefined
+    req.session.destroy();
     res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
 })
-
+// Fall back page
+app.get('*',(req,res)=>{
+    res.status(404).sendFile('404.html', { root: 'public/errorpages' })
+})

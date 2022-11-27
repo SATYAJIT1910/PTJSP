@@ -23,7 +23,7 @@ router.get('/dashboard', (req, res) => {
     if (req.session.loggedin && req.session.username == 'admin') {
         res.sendFile('/static/admin/dashboard.html', { root: '.' })
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 // all registered job seekers view to admin
@@ -35,10 +35,10 @@ router.get('/allusers', async (req, res) => {
 
         } catch (error) {
             console.log(error)
-            res.sendStatus(501);
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 // all posted job view to admin
@@ -47,10 +47,10 @@ router.get('/alljobs', async (req, res) => {
         try {
             res.render('admin/admin_all_jobs', { "data": JSON.parse(await blockexecute.queryAllJobposting()) });
         } catch (error) {
-            res.sendStatus(501);
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 }
 )
@@ -62,10 +62,10 @@ router.get('/deleteuser/:JSkey', async (req, res) => {
             await blockexecute.deleteJobSeeker(JSkey, true);
             res.redirect('/admin/allusers')
         } catch (error) {
-            res.sendStatus(501);
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 }
 )
@@ -77,10 +77,10 @@ router.get('/deletejob/:jobpostingId', async (req, res) => {
             await blockexecute.deleteJobposting(req.params.jobpostingId, true)
             res.redirect('/admin/alljobs');
         } catch (error) {
-            res.sendStatus(501);
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
-        res.send("Login Required")
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
 
