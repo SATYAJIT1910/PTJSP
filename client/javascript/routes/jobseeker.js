@@ -1,3 +1,9 @@
+/**
+ * @author Satyajit Ghosh
+ * @date 2022-11-27
+ * @email satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in
+ */
+
 import { Router } from 'express';
 let router = Router();
 import { createHash } from 'crypto';
@@ -7,7 +13,7 @@ router.get('/login', async (req, res) => {
     res.sendFile('/static/jobseeker/login.html', { root: '.' })
 })
 // job seeker credientials verification
-router.post('/login/verfify', async (req, res) => {
+router.post('/login/', async (req, res) => {
     console.log(req.body)
     let username = req.body.username;
     let password = createHash('sha256').update(req.body.password).digest('hex');
@@ -20,10 +26,10 @@ router.post('/login/verfify', async (req, res) => {
             req.session.username = usrobj.jobseekerId
             res.redirect('/jobseeker/dashboard')
         } else {
-            res.send("Invaild Credientials");
+            res.status(401).send("<script>window.alert('Invaild credentials');window.location.replace('/jobseeker/login')</script>");
         }
-    } catch (error){
-        res.send("User Doesn't Exits");
+    } catch (error) {
+        res.status(401).send("<script>window.alert('User not registered');window.location.replace('/jobseeker/login')</script>");
     }
 })
 // Register a new job seeker to the portal
@@ -31,9 +37,9 @@ router.post('/createuser', async (req, res) => {
     try {
         await blockexecute.createjobseeker(JSON.stringify(req.body));
         console.log(req.body)
-        res.send('Job Seeker Created Successfully. Back to <a href="/jobseeker/login">Login</a>');
+        res.status(201).send('<script>window.alert("Registered Successfully");window.location.replace("/jobseeker/login")</script>'); // 201 - Created
     } catch (error) {
-        res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
+        res.status(409).send('<script>window.alert("User Already Exists");window.location.replace("/jobseeker/login")</script>') // 409 - Conflict
     }
 
 })
@@ -50,7 +56,7 @@ router.get('/editprofile/:ID', async (req, res) => {
 
             let usrobj = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
             res.render('jobseeker/update', { "data": usrobj })
-        } catch (error){
+        } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
@@ -63,8 +69,8 @@ router.post('/update', async (req, res) => {
         try {
 
             await blockexecute.updatejobseeker(JSON.stringify(req.body))
-            res.send("<b>Details Sucessfully Updated <a href='/jobseeker/dashboard'>Back to Dashboard</a></b>")
-        } catch (error){
+            res.status(200).send("<script>window.alert('Details Sucessfully Updated');window.location.replace('/jobseeker/dashboard/')</script>")
+        } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
@@ -78,7 +84,7 @@ router.get('/viewfullprofile/:ID', async (req, res) => {
 
             let data = JSON.parse(await blockexecute.readJobseeker(req.params.ID))
             res.render('jobseeker/fullprofile', { "data": data });
-        } catch (error){
+        } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
@@ -105,8 +111,8 @@ router.post('/updatepassword', async (req, res) => {
         try {
 
             await blockexecute.updatejobseekerPassword(JSON.stringify({ "jobseekerId": jobseekerId, "newPassword": newpasswd }))
-            res.send("<b>Password Sucessfully Updated</b>")
-        } catch (error){
+            res.status(200).send('<script>window.alert("Password Updated Successfully");window.location.replace("/jobseeker/dashboard/")</script>')  // 200 - Ok
+        } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
@@ -119,8 +125,8 @@ router.get('/deleteuser', async (req, res) => {
         await blockexecute.deleteJobSeeker(req.session.username, false);
         req.session.loggedin = false
         req.session.username = undefined
-        res.send("User Deleted.<a href='/'>Back to Home</a>");
-    } catch (error){
+        res.status(200).send("<h3>User Sucessfully Deleted.<a href='/'>Back to Home</a></h3>");
+    } catch (error) {
         res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
     }
 })
@@ -141,8 +147,8 @@ router.get('/apply/:JPID', async (req, res) => {
         try {
 
             await blockexecute.applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
-            res.send("You have sucessfully Applied. Thank You")
-        } catch (error){
+            res.status(200).send("<script>window.alert('You have sucessfully Applied. Thank You');window.location.replace('/jobseeker/searchjobs/')</script>")
+        } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {

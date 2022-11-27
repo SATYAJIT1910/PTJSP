@@ -1,6 +1,10 @@
+/**
+ * @author Satyajit Ghosh
+ * @date 2022-11-27
+ * @email satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in
+ */
 let contract;
 import { initContract } from './contract_invoke';
-
 async function initcont() {
     // This function initializes the contract.
     contract = await initContract();

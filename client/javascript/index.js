@@ -1,8 +1,8 @@
 /**
  * @author Satyajit Ghosh
- * @date 2022-11-25
+ * @date 2022-11-27
+ * @email satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in
  */
-
 
 import {initcont} from './blockchainExecuter';
 import { join } from 'path';
@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 // This is used to log out the different actors of portal
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    res.send('Sucessfully Logged Out. Go to <a href="/">Home</a>')
+    res.status(200).send('<h3>Sucessfully Logged Out. Go to <a href="/">Home</a></h3>')
 })
 // Fall back page
 app.get('*',(req,res)=>{

@@ -1,3 +1,9 @@
+/**
+ * @author Satyajit Ghosh
+ * @date 2022-11-27
+ * @email satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in
+ */
+
 import { Router } from 'express';
 let router = Router();
 import * as blockexecute from '../blockchainExecuter';
@@ -6,7 +12,7 @@ router.get('/login', async (req, res) => {
     res.sendFile('/static/hr/login.html', { root: '.' })
 })
 // HR credientials verification
-router.post('/login/verfify', async (req, res) => {
+router.post('/login/', async (req, res) => {
     let username = req.body.username
     let password = req.body.password
 
@@ -21,7 +27,7 @@ router.post('/login/verfify', async (req, res) => {
         req.session.usertype = 'hr'
         res.redirect('/hr/dashboard')
     } else {
-        res.send("Invaild Credientials")
+        res.status(401).send("<script>window.alert('Invaild credentials');window.location.replace('/hr/login')</script>")
     }
 })
 // Dashboard for HR
@@ -48,7 +54,7 @@ router.post('/jobpost', async (req, res) => {
             let data = req.body;
             data.HRId = req.session.username;
             await blockexecute.createJobposting(req.body);
-            res.send("Job Posted Successfully");
+            res.status(200).send("<script>window.alert('Job Posted Successfully');window.location.replace('/hr/jobpost/')</script>");
         } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
@@ -106,7 +112,7 @@ router.get('/hired/:jobpostingId/:jobseekerId/', async (req, res) => {
             const jobseekerId = req.params.jobseekerId;
             const jobpostingId = req.params.jobpostingId;
             await blockexecute.updateStatus(jobseekerId, jobpostingId)
-            res.send("<b>Candidate Hired Successfully</b>");
+            res.status(200).send("<script>window.alert('Candidate Hired Successfully');window.location.replace('/hr/viewposts/')</script>");
         } catch (error) {
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }

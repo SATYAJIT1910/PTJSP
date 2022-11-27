@@ -1,3 +1,8 @@
+/**
+ * @author Satyajit Ghosh
+ * @date 2022-11-27
+ * @email satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in
+ */
 import { Gateway, Wallets } from 'fabric-network';
 import { readFileSync } from 'fs';
 import { resolve, join } from 'path';

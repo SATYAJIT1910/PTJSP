@@ -1,21 +1,27 @@
+/**
+ * @author Satyajit Ghosh
+ * @date 2022-11-27
+ * @email satyajit@satyajit.co.in & satyajit.ghosh@stu.adamasuniversity.ac.in
+ */
+
 import { Router } from 'express';
 let router = Router();
 import * as blockexecute from '../blockchainExecuter';
 import dotenv from 'dotenv'
 dotenv.config()
 
-// admin login
+// admin login page
 router.get('/login', (req, res) => {
     res.sendFile('/static/admin/login.html', { root: '.' })
 })
 // verfication of admin credentials
-router.post('/login/verfify', (req, res) => {
+router.post('/login/', (req, res) => {
     if (req.body.username == process.env.ADMIN_ID && req.body.password == process.env.ADMIN_KEY) {
         req.session.loggedin = true;
         req.session.username = 'admin';
         res.redirect('/admin/dashboard')
     } else {
-        res.send("Invaild Credientials")
+        res.status(401).send("<script>window.alert('Invaild credentials');window.location.replace('/admin/login')</script>")
     }
 })
 // dashboard for admin
