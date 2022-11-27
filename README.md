@@ -67,7 +67,7 @@ npm start
 
 To clear the network use -
 ```
-sudo ./network.down
+sudo ./network.sh down
 ```
 from test-network folder.
 <hr>
