@@ -105,7 +105,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 then install the node 10.19
 
 ```
-nvm install 12
+nvm install 10.19
 ```
 after that use that version using -
 
