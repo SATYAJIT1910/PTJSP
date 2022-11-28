@@ -4,23 +4,23 @@
 
 'use strict';
 
-import { Wallets } from 'fabric-network';
-import FabricCAServices from 'fabric-ca-client';
-import { readFileSync } from 'fs';
-import { resolve, join } from 'path';
+const { Wallets } = require('fabric-network');
+const FabricCAServices = require('fabric-ca-client');
+const fs = require('fs');
+const path = require('path');
 
 async function main() {
     try {
         // load the network configuration
-        const ccpPath = resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
-        const ccp = JSON.parse(readFileSync(ccpPath, 'utf8'));
+        const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
+        const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new CA client for interacting with the CA.
         const caURL = ccp.certificateAuthorities['ca.org1.example.com'].url;
         const ca = new FabricCAServices(caURL);
 
         // Create a new file system based wallet for managing identities.
-        const walletPath = join(process.cwd(), 'wallet');
+        const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = await Wallets.newFileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 

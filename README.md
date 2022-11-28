@@ -1,6 +1,6 @@
 ### Requirements :
 1. Node v10.19.0
-2. NPM v10.19.0
+2. NPM v6.14.4
 3. Docker version 20.10.12, build 20.10.12-0ubuntu2~20.04.1
 4. Git 2.25.1
 5. cURL 7.68.0
@@ -94,6 +94,26 @@ and <code>registerUser.js</code>
 
 <a href="https://stackoverflow.com/a/48957722">https://stackoverflow.com/a/48957722</a>
 
+<li>Problem installing Node 10.19 ?</li>
+
+<b>Solution:</b>
+
+Install nvm
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+```
+then install the node 10.19
+
+```
+nvm install 12
+```
+after that use that version using -
+
+```
+nvm use 10.19
+```
+
+If you don't use this node version, then your <code>npm install</code> will be stucked.
 <!-- <li>API error (404): network _test not found</li>
 
 ```
@@ -135,7 +155,7 @@ COMPOSE_PROJECT_NAME=docker
             <td align="center">
         <a href="https://www.linkedin.com/in/aratrika-bose-0503231b3/">
             <img src="https://i.postimg.cc/5yxGKm6d/aratrika.jpg" width="120px;" alt=""/>
-            <p><b>Aratrika Bose<br>(Presention & Research)</b></p><br />
+            <p><b>Aratrika Bose<br>(Presenter & Research)</b></p><br />
         </a>
     </td>
         <td align="center">
