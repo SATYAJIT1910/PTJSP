@@ -1,231 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpage</title>
 
-    <!-- font awesome cdn link  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post Job</title>
 
-    <!-- custom css file link  -->
-   <style>
-    body{
-  background: linear-gradient(to bottom right, rgb(69, 233, 216), rgb(243, 146, 42))
-  
-  }
-  
-  .card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 2.15;
-  padding-left: .75em;
-  padding-right: .75em;
-  }
-  .card-registration .select-arrow {
-  top: 13px;
-  }
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+
+  <!-- custom css file link  -->
+  <style>
+    body {
+      background: linear-gradient(to bottom right, rgb(69, 233, 216), rgb(243, 146, 42))
+    }
+
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 2.15;
+      padding-left: .75em;
+      padding-right: .75em;
+    }
+
+    .card-registration .select-arrow {
+      top: 13px;
+    }
 
 
 
 
-  .form-control-lg {
-    min-height: calc(1.5em + 1rem + 2px);
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-}
+    .form-control-lg {
+      min-height: calc(1.5em + 1rem + 2px);
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+    }
 
 
-.form-control {
-  display: block;
-  width: 100%;
-  padding: 0.370rem 0.75rem;
-  font-size: 1rem;
-  font-family: monospace;
-  font-weight: 350;
-  line-height: 1.5;
-  color: #151110;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1.5px solid #8a82df4b;
-  appearance: none;
-  border-radius: 0.375rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 0.370rem 0.75rem;
+      font-size: 1rem;
+      font-family: monospace;
+      font-weight: 350;
+      line-height: 1.5;
+      color: #151110;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1.5px solid #8a82df4b;
+      appearance: none;
+      border-radius: 0.375rem;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
 
-.btn-primary {
-  --bs-btn-color: rgb(248, 250, 237);
-  --bs-btn-bg: var(--bs-green);}
+    .btn-primary {
+      --bs-btn-color: rgb(248, 250, 237);
+      --bs-btn-bg: var(--bs-green);
+    }
+  </style>
+</head>
 
-   </style>
-  </head>
-  <body>
-    <section>
-      <div class="container py-5 h-100">
-        <div class="row justify-content-center align-items-center h-100">
-          <div class="col-12 col-lg-9 col-xl-7">
-            <div
-              class="card shadow-2-strong card-registration"
-              style="border-radius: 15px"
-            >
-              <div class="card-body p-4 p-md-5">
-                <h3 style="text-align: center">---POST A JOB---</h3>
-                <br />
-                  <form action="/hr/jobpost" method="post">
-                  <div class="row">
-                    <div class="row">
-                      <div class="col-md-12 mb-4">
-                        <div class="form-outline">
-                          <input
-                            type="id"
-                            name="jobpostingId"
-                            required
-                            class="form-control form-control-lg" placeholder="Enter Jobposting Id"
-                          />
-                          <label class="form-label" for="firstName"
-                            > Job Post ID</label
-                          >
-                        </div>
-                      </div>
+<body>
+  <section>
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px">
+            <div class="card-body p-4 p-md-5">
+              <h3 style="text-align: center">---POST A JOB---</h3>
+              <br />
+              <form action="/hr/jobpost" method="post">
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="id" name="jobpostingId" required class="form-control form-control-lg"
+                        placeholder="Enter Jobposting Id" />
+                      <label class="form-label" for="firstName">Job ID</label>
                     </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col-md-12 mb-4">
-                        <div class="form-outline">
-                          <input
-                            type="id"
-                            name="HRId"
-                            required
-                            class="form-control form-control-lg" placeholder="Enter Hr Id"
-                          />
-                          <label class="form-label" for="HRId"
-                            >Enter HR ID</label
-                          >
-                        </div>
-                      </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" name="profilename" required class="form-control form-control-lg"
+                        placeholder="Enter Profile Name" />
+                      <label class="form-label" for="profilename">Profile Name</label>
                     </div>
-
-                    
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          name="qualification"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter qualification"
-                        />
-                        <label class="form-label" for="qualification"
-                          >Qualification</label
-                        >
-                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" name="qualification" required class="form-control form-control-lg"
+                        placeholder="Enter qualification" />
+                      <label class="form-label" for="qualification">Qualification</label>
                     </div>
+                  </div>
 
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          name="profilename"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter ProfileName"
-                        />
-                        <label class="form-label" for="profilename"
-                          >Profile Name</label
-                        >
-                      </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="number" min="18" name="agelimit" required class="form-control form-control-lg"
+                        placeholder="Enter Age limit" />
+                      <label class="form-label" for="agelimit">Age Limit</label>
                     </div>
+                  </div>
+                </div>
 
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input
-                          type="number"
-                          min="18"
-                          name="agelimit"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter Age limit"
-                        />
-                        <label class="form-label" for="agelimit"
-                          >Age Limit</label
-                        >
-                      </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="number" min="2500" name="salary" minlength="4" required
+                        class="form-control form-control-lg" placeholder="Enter salary" />
+                      <label class="form-label" for="salary">Salary</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="number" min="0" name="yearofexperience" required class="form-control form-control-lg"
+                        placeholder="Enter Year of Exprience" />
+                      <label class="form-label" for="yearofexperience"> Year of Experience</label>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12 mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="text" name="location" minlength="8" required class="form-control form-control-lg"
+                        placeholder="Enter the Location" />
+                      <label class="form-label" for="location">Location</label>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-md-6 mb-4 pb-2">
                       <div class="form-outline">
-                        <input
-                          type="number" min="2500"
-                          name="salary"
-                          minlength="4"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter salary"
-                        />
-                        <label class="form-label" for="salary">Salary</label>
+                        <input type="text" name="skills" required class="form-control form-control-lg"
+                          placeholder="Enter Required skills" />
+                        <label class="form-label" for="skills">Skills</label>
                       </div>
                     </div>
 
                     <div class="col-md-6 mb-4 pb-2">
                       <div class="form-outline">
-                        <input
-                          type="number" min="0"
-                          name="yearofexperience"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter Year of Exprience"
-                        />
-                        <label class="form-label" for="yearofexperience"> Year of Experience</label>
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="row">
-                    <div class="col-md-12 mb-4 pb-2">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          name="location"
-                          minlength="8"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter the Location"
-                        />
-                        <label class="form-label" for="location">Location</label>
-                      </div>
-                    </div>
-
-                  <div class="row">
-                    <div class="col-md-6 mb-4 pb-2">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          name="skills"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter Required skills"
-                        />
-                        <label class="form-label" for="skills"
-                          >Skills</label
-                        >
-                      </div>
-                    </div>
-        
-                    <div class="col-md-6 mb-4 pb-2">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          name="companyname"
-                          required
-                          class="form-control form-control-lg" placeholder="Enter the company name"
-                        />
+                        <input type="text" name="companyname" required class="form-control form-control-lg"
+                          placeholder="Enter the company name" />
                         <label class="form-label" for="companyname">Company Name</label>
                       </div>
                     </div>
@@ -236,19 +162,16 @@
 
 
 
-                  <div  class="mt-4 pt-2">
-                    <input
-                      class="btn btn-primary btn-lg"
-                      type="submit"
-                      value="Submit"
-                    />
+                  <div class="mt-4 pt-2">
+                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
                   </div>
-                </form><br><br><br>
-              </div>
+              </form><br><br><br>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>
