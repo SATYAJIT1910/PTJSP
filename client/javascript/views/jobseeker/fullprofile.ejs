@@ -71,11 +71,24 @@ body {
 }
 
 .url a:hover, .url .active {
-    background-color: #e8f5ff;
+    background-color: #e66d45;
     border-radius: 28px;
     color: #000;
     margin-left: 14%;
     width: 65%;
+}
+.cvbtn {
+    background-color: #457de6;
+    border-radius: 28px;
+    color: #000;
+    margin-left: 14%;
+    width: 65%;
+    font-size: 20px;
+    margin: 10px 0;
+    padding: 6px 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 /* Main Table Design */
 .main {
@@ -85,6 +98,7 @@ body {
     padding: 0 10px;
     width: 58%;
     position: relative;
+
 }
 
 .main h2 {
@@ -142,7 +156,8 @@ h1{
 
         <div class="sidenav-url">
             <div class="url">
-                <a href="#profile" class="active">Profile</a><hr>
+                <button class="cvbtn" onclick="printDiv()">Download CV</button>
+                <a class="active" href="/jobseeker/deleteuser">Delete</a>
                 <hr align="center">
             </div>
         </div>
@@ -150,12 +165,12 @@ h1{
     <div class="main">
       
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" id="card-body">
                 
                 <table>
                     <tbody>
                             <tr>
-                                <h2>Basic Information</h2><div class="topright"><a href="/jobseeker/deleteuser">Delete</a></div><hr>
+                                <h2>Basic Information</h2><div class="topright">
                             <td>First Name</td>
                             <td>:</td>
                             <td><%= data.firstName %></td>
@@ -216,5 +231,18 @@ h1{
         </div>
         </div>
     </div>
+    <script>
+            function printDiv() {
+            var divContents = document.getElementById("card-body").innerHTML;
+            var a = window.open('', '', 'height=1080, width=1920');
+            a.document.write('<html>');
+            a.document.write('<body > <center><h1>Curriculum vitae</center><br>');
+            a.document.write(divContents);
+            a.document.write("<hr><center><h5>Downloaded from ChainHire</h5></center>")
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+    </script>
 </body>
 </html>

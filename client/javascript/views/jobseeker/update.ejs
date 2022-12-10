@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpage</title>
+    <title>Update</title>
 
     <!-- font awesome cdn link  -->
     <link
@@ -84,7 +84,7 @@ select:hover {
               style="border-radius: 15px"
             >
               <div class="card-body p-4 p-md-5">
-                <h3 style="text-align: center"> Enter Your Details </h3><br>
+                <h3 style="text-align: center"> Update Your Details </h3><br>
                 <form action="/jobseeker/update" method="post">
 
                   <div class="form-group">
@@ -124,7 +124,7 @@ select:hover {
                         <input
                           type="text" 
                           name="achievements" required
-                          class="form-control form-control-lg" placeholder="Enter Your Achievements"
+                          class="form-control form-control-lg" placeholder="Enter Your achievements"
                         />
                         <label class="form-label" for="achievements"
                           >Achievements</label
@@ -139,15 +139,18 @@ select:hover {
                           class="form-control form-control-lg" placeholder="Enter Your experience"
                         />
                         <label class="form-label" for="experience"
-                          >Eperiences</label
+                          >Experience</label
                         >
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
+                    <label class="form-label select-label"
+                      >  Select Your Qualification</label
+                    >
                     <div class="col-12">
-                      <select class="select form-control-lg" required >
+                      <select class="select form-control-lg" name="qualification" required >
                         <option name="none">Select</option>
                         <option name="Secondary" >Secondary</option>
                         <option name="Higher Secondary" >Higher Secondary</option>
@@ -156,9 +159,6 @@ select:hover {
                         <option name="Phd" >PhD</option>
                         <option name="Others" >Others</option>
                       </select>
-                      <label class="form-label select-label"
-                        >  Select Your Qualification</label
-                      >
                     </div>
                   </div><br>
 
