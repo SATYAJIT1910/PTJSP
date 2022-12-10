@@ -1,4 +1,5 @@
 /* Author:Rakibul Islam */
+/* Author:Rakibul Islam */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 :root{
@@ -12,7 +13,7 @@
 }
 
 *{
-  font-family: 'Nunito', sans-serif;
+  font-family:"Playfair Display", serif;
   margin:0; padding:0;
   box-sizing: border-box;
   outline: none; border:none;
@@ -21,10 +22,6 @@
   transition: all .2s linear;
 }
 
-*::selection{
-  background:var(--green);
-  color:#fff;
-}
 
 html{
   font-size: 62.5%;
@@ -32,6 +29,7 @@ html{
   scroll-padding-top: 6.5rem;
   scroll-behavior: smooth;
 }
+
 
 .header-1{
     background:#eee;
@@ -50,33 +48,7 @@ html{
     padding-right: .5rem;
     color:var(--green);
   }
-
   
-.header-1 .search-box-container{
-    display: flex;
-    height:5rem;
-  }
-  
-
-
-  .header-1 .search-box-container label{
-    height: 100%;
-    width:8rem;
-    font-size: 2.5rem;
-    line-height: 5rem;
-    color:#fff;
-    background:var(--green);
-    text-align: center;
-    cursor: pointer;
-  }
-  
-.header-1 .search-box-container label:hover{
-    background:var(--black);
-  }
-  
-
-
-
   .header-2{
     background:#fff;
     display: flex;
@@ -94,39 +66,15 @@ html{
     border-radius: .5rem;
     color:var(--black);
   }
-
-  
 .header-2 .navbar a:hover{
     background:var(--green);
     color:#fff;
   }
-
-
-  
 .header-2 .icons a{
     font-size: 2.5rem;
-    color:var(--black);
+    color:var(--green);
     padding-left: 1rem;
   }
-
-
-
-
-
-  .header-1 .search-box-container #search-box{
-    height: 100%;
-    width:100%;
-    padding:1rem;
-    font-size: 2rem;
-    color:#333;
-    border:.1rem solid rgba(0,0,0,.3);
-    text-transform: none;
-  }
-
-
-
-
-  
   .search_bar {
     width: 100%;
     height: auto;
@@ -190,49 +138,274 @@ html{
 
 
 
-/*   fOrm content */
+ /*-----  Job Category Section Css  ------*/
 
-
-.header .login-form{
-    position: absolute;
-    top:110%; right:-110%;
-    width:35rem;
-    box-shadow: var(--box-shadow);
-    padding:2rem;
-    border-radius: .5rem;
-    background: #fff;
-    text-align: center;
+ .job_category {
+  width: 100%;
+  height: auto;
+  padding: 120px 10%;
 }
 
-.header .login-form.active{
-    right:2rem;
-    transition: .4s linear;
+.job_category>h3 {
+  font-size: 48px;
+  color: var(--blue);
+  margin-bottom: 40px;
 }
 
-.header .login-form h3{
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    color: var(--black);
+.job_category_container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 100px 20px;
 }
 
-.header .login-form .box{
-    width: 100%;
-    margin:.7rem 0;
-    background:#eee;
-    border-radius: .5rem;
-    padding:1rem;
-    font-size: 1.6rem;
-    color:var(--black);
-    text-transform: none;
+.category_card {
+  padding: 30px;
+  border-radius: 100px;
+  transition: .7s;
+  cursor: pointer;
 }
 
-.header .login-form p{
-    font-size: 1.4rem;
-    padding:.5rem 0;
-    color:var(--light-color);
+.category_card:hover {
+  box-shadow: 40px 80px 24px rgba(92, 35, 46, 0.109);
+  background-color: var(--lightblue);
+  color: var(--background);
+
 }
 
-.header .login-form p a{
-    color:var(--orange);
-    text-decoration: underline;
+.category_card h4 {
+  font-size: 25px;
+  max-width: 150px;
+  line-height: 26px;
+  color: var(--blue);
+  margin: 15px 0 12px 0;
 }
+
+.category_card p {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 24px;
+  opacity: .8;
+}
+
+
+  /*  Companies Section Css  */ 
+
+    
+    .companies {
+      width: 100%;
+      height: auto;
+      padding: 40px 10% 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+  .companies_details h3 {
+      font-size: 43px;
+      color: var(--green);
+      line-height: 58px;
+      margin-bottom: 31px;
+  }
+
+  .companies_details p {
+      font-size: 19px;
+      line-height: 27px;
+      font-weight: 400;
+      margin-bottom: 23px;
+      max-width: 460px;
+  }
+
+
+
+
+
+/*Customer Review section */
+.jobseeker {
+  width: 100%;
+  height: auto;
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.customers_head {
+  width: 100%;
+  height: auto;
+  margin-bottom: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.customers_head h3 {
+  font-size: 48px;
+  color: var(--blue);
+  line-height: 48px;
+}
+
+.customers_head .arrows {
+  display: flex;
+}
+
+.customers_head .arrows i {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 10px 10px 28px rgba(241, 38, 38, 0.068);
+}
+
+.customers_container {
+  width: 1140px;
+  height: 530px;
+  position: relative;
+  overflow: hidden;
+}
+
+.customers_container .cards_wraper {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: .7s;
+}
+
+.customers_container .cards_wraper .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 330px;
+  height: 400px;
+  padding: 0 40px;
+  margin: 0 25px;
+  border-radius: 55px;
+  cursor: pointer;
+  transition: .7s;
+  box-shadow: 28px 75px 25px rgba(0, 0, 0, 0.089);
+}
+
+.customers_container .cards_wraper .card:hover {
+  background-color: var(--lightblue);
+  color: var(--background);
+}
+
+.cards_wraper .card .details {
+  display: flex;
+  align-items: center;
+}
+
+.cards_wraper .card .details h3 {
+  font-size: 25px;
+}
+.cards_wraper .card .details p {
+  font-family: system-ui;
+  font-size: 15px;
+
+}
+
+.cards_wraper .card .details img {
+  margin-right: 30px;
+}
+
+.cards_wraper .card>p {
+  font-size: 15px;
+  line-height: 27px;
+  margin: 27px 0 23px 0;
+}
+
+        /*footer section */
+     
+.footer{
+  background: #fff;
+  
+}
+
+.footer .box-container{
+  background:#eee;
+  display: flex;
+  justify-content: space-between;
+  padding:2rem 8%;
+  box-shadow: 0 .1rem 1rem rgba(241, 17, 17, 0.1);
+
+  
+}
+
+.footer .box-container .box h3{
+ 
+  font-size: 2.5rem;
+  color:var(--blue);
+  padding:1rem 0;
+}
+
+.footer .box-container .box .links{
+  display: block;
+  font-size: 1.5rem;
+  color:var(--black);
+  padding:1rem 0;
+}
+
+.footer .box-container .box .links:hover i{
+  padding-right: 2rem;
+}
+.footer .box-container .box p{
+  line-height: 1.8;
+  font-size: 1.5rem;
+  color:var(--black);
+  padding:1rem 0;
+}
+
+.footer .box-container .box .share a{
+  height:4rem;
+  width:4rem;
+  line-height:4rem;
+  border-radius: .5rem;
+  font-size: 2rem;
+  color:var(--black);
+  margin-right: .2rem;
+  background: rgb(220, 216, 216);
+  text-align: center;
+}
+
+.footer .box-container .box .email{
+  width: 100%;
+  margin:.7rem 0;
+  padding:1rem;
+  border-radius: .5rem;
+  background: rgb(215, 211, 211);
+  font-size: 1.6rem;
+  color:var(--black);
+  text-transform: none;
+}
+
+/* last footer */
+
+.fo{
+  background:#fff;
+ 
+  padding:2rem 9%;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+  position: relative;
+}
+.fo .credit{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.fo .credit span{
+  color:var(--green);
+}
+
+
+
+
+           
+
+
+

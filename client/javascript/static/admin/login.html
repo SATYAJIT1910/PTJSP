@@ -1,36 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<!--Author : Rakibul Islam-->
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Admin Login Form </title>
-  <link rel="stylesheet" href="../styles/style1.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Webpage</title>
 
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../styles/style1.css">
+
+</head>
 <body>
-  <div class="center">
-    <h1> Admin Login</h1><br>
-    <form action="/admin/login/" method="POST" class="pt-3">
-      <div class="txt_field">
-        <input type="text" name="username" required>
-        <span></span>
-        <label>Username</label>
-      </div>
-      <div class="txt_field">
-        <input type="password" name="password" required>
-        <span></span>
-        <label>Password</label>
-      </div>
-      <input type="submit" value="Login"><br><br><br>
-      <!--
-         <div class="register_link">
-          Not a member? <a href="part1.html">Register</a> 
-        </div>-->
-    </form>
-  </div>
+<header>
+
+    <div class="header-1">
+
+        <a href="#" class="logo"><i class="fas fa-briefcase"></i>PTJSP</a>
+
+<!--
+        <form action="" class="search-box-container">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+    -->
+    </div>
+
+    <div class="header-2">
+<!--
+        <div id="menu-bar" class="fas fa-bars"></div>
+-->
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="/jobseeker/login">Jobseeker</a>
+            <a href="/hr/login">Hr</a>
+            
+            <a href="#footer">Contact</a>
+        </nav>
+
+        <div class="icons">
+            
+        <a href="/admin/login"  class="fas fa-user-alt"> Admin</a>
+
+        </div>
+
+    </div>
+
+
+</header>
+
+
+
+<div class="center">
+  <h1> Admin Login</h1><br>
+  <form action="/admin/login/" method="POST"  class="pt-3">
+    <div class="txt_field">
+      <input type="text"  name="username" required>
+      <span></span>
+      <label>Username</label>
+    </div>
+    <div class="txt_field">
+      <input type="password" name="password" required>
+      <span></span>
+      <label>Password</label>
+    </div>
+    <input type="submit" value="Login"><br><br><br>
+        <!--
+     <div class="register_link">
+      Not a member? <a href="part1.html">Register</a> 
+    </div>-->
+  </form>
+</div>
+ 
+
+
+<!--Footer Section-->
+<footer><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<section class="footer" id="footer">
+    
+
+    <div class="box-container" >
+
+        <div class="box">
+            <h3> PTJSP Job Portal <i class="fas fa-gem me-3"></i> </h3><br>
+            <p>Here you can find your best jobs .</p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-github"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Contact info</h3><br>
+            <div class="head">
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +91-9874561231 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +91-1234567892 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> ptjsp@gmail.com </a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Barasat, Kolkata, india - 700126 </a>
+        </div>
+        </div>
+
+        <div class="box">
+            <h3>Quick links</h3><br>
+            <div class="head">
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Home </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Categories </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Review </a>
+            
+        </div>
+        </div>
+
+        <div class="box">
+            <h3>Job Updates</h3>
+            <p>Subscribe for get latest jobs updates</p>
+            <input type="email" placeholder="your email" class="email">
+        </div>
+
+    </div>
+
+   
+
+  
+</section>
+
+<div class="fo">
+<h1 class="credit"> created by <span> mr. PTJSP designer </span> | all rights reserved! </h1>
+</div>
+
+<!-- footer section ends -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+</footer>
 
 </body>
-
-</html>
-
 </html>

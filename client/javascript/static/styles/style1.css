@@ -1,31 +1,101 @@
 /* Author:Rakibul Islam */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root{
+  --green:#3427ae;
+  --black:#2c2c54;
+  --font-color: #424642;
+--background: #f0f0f5;
+--blue: #232d67;
+--lightblue: #232d67c5;
+--blue: #3e53d8;
+}
+
 *{
-  margin: 0;
-  padding: 0;
+  font-family:"Playfair Display", serif;
+  
+  margin:0; padding:0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  outline: none; border:none;
+  text-decoration: none;
+  
+  transition: all .2s linear;
 }
 body{
-  margin: 0;
-  padding: 0;
   background: linear-gradient(120deg,#88e437, #32efef);
-  height: 100vh;
-  overflow: hidden;
 }
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 6.5rem;
+  scroll-behavior: smooth;
+}
+
+
+.header-1{
+    background:#eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+  }
+  .logo{
+    color:var(--black);
+    font-weight: bolder;
+    font-size: 3rem;
+  }
+
+  .logo i{
+    padding-right: .5rem;
+    color:var(--green);
+  }
+  
+  .header-2{
+    background:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    position: relative;
+  }
+
+  
+.header-2 .navbar a{
+    padding:.5rem 1.5rem;
+    font-size: 2rem;
+    border-radius: .5rem;
+    color:var(--black);
+  }
+.header-2 .navbar a:hover{
+    background:var(--green);
+    color:#fff;
+  }
+.header-2 .icons a{
+    font-size: 2.5rem;
+    color:var(--green);
+    padding-left: 1rem;
+  }
+  
+
+/*;login page */
+
+
 .center{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 380px;
   background: white;
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
 .center h1{
+  font-size: 0.7cm;
   text-align: center;
-  padding: 20px 0;
+  padding: 40px 0;
   border-bottom: 1px solid silver;
 }
 .center form{
@@ -116,3 +186,100 @@ input[type="submit"]:hover{
 }
 
 */
+
+
+
+        /*footer section */
+     
+.footer{
+  margin-top: 100px;
+  
+  background: #fff;
+ 
+  
+}
+
+
+.footer .box-container{
+  background:#eee;
+  display: flex;
+  justify-content: space-between;
+  padding:2rem 8%;
+  box-shadow: 0 .1rem 1rem rgba(241, 17, 17, 0.1);
+
+  
+}
+
+.footer .box-container .box h3{
+ 
+  font-size: 2.5rem;
+  color:var(--blue);
+  padding:1rem 0;
+}
+
+.footer .box-container .box .links{
+  display: block;
+  font-size: 1.5rem;
+  color:var(--black);
+  padding:1rem 0;
+}
+
+.footer .box-container .box .links:hover i{
+  padding-right: 2rem;
+}
+.footer .box-container .box p{
+  line-height: 1.8;
+  font-size: 1.5rem;
+  color:var(--black);
+  padding:1rem 0;
+}
+
+.footer .box-container .box .share a{
+  height:4rem;
+  width:4rem;
+  line-height:4rem;
+  border-radius: .5rem;
+  font-size: 2rem;
+  color:var(--black);
+  margin-right: .2rem;
+  background: rgb(220, 216, 216);
+  text-align: center;
+}
+
+.footer .box-container .box .email{
+  width: 100%;
+  margin:.7rem 0;
+  padding:1rem;
+  border-radius: .5rem;
+  background: rgb(215, 211, 211);
+  font-size: 1.6rem;
+  color:var(--black);
+  text-transform: none;
+}
+
+/* last footer */
+
+.fo{
+  background:#fff;
+ 
+  padding:2rem 9%;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+  position: relative;
+}
+.fo .credit{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.fo .credit span{
+  color:var(--green);
+}
+
+
+
+
+
+           
+
+
+

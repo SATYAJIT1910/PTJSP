@@ -1,81 +1,208 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<!--Author : Rakibul Islam-->
-<head>
-  <title>Update Job Seeker Details</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webpage</title>
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <!-- custom css file link  -->
+    
+    <style>
+      body{
+  background: linear-gradient(to bottom right, rgb(29, 244, 219), rgb(72, 24, 216))
+  }
+  
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+  }
+  .card-registration .select-arrow {
+  top: 13px;
+  }
   
 
-  <style>
-    h2 {
-      text-align: center;
-    }
-    
-  </style>
-</head>
-<body>
-
-<div class="container"><br>
-  <h2>Update Your Details </h2><br>
-  <form action="/jobseeker/update" method="post">
-
-    <div class="form-group">
-      <label for="id">User ID:</label>
-      <input type="id" class="form-control" name="jobseekerId" value=<%=''+data.jobseekerId%> readonly>
-    </div>
 
 
-    <div class="form-group">
-      <label for="fname">First name:</label>
-      <input type="text" class="form-control" name="firstName" value=<%=''+data.firstName%> placeholder="Enter first name" required>
-    </div>
+  .form-control-lg {
+    min-height: calc(1.5em + 1rem + 2px);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
 
-    <div class="form-group">
-      <label for="lname">Last  name:</label>
-      <input type="text" class="form-control" name="lastName" value=<%=''+data.lastName%> placeholder="Enter last name" value="" required>
-    </div> 
+select:hover {
+  cursor: pointer;
+  
+}
 
-    <div class="form-group">
-      <label for="qualification">Select Qualification:</label>
-      <select class="form-control" name="qualification">
-        <option name="">Select </option>
-        <option name="Secondary">Secondary </option>
-        <option name="Higher Secondary">Higher Secondary</option>
-        <option name="Bachelor's">Bachelor's </option>
-        <option name="Master's">Master's </option>
-      </select>
-    </div>
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.370rem 0.75rem;
+  font-size: 1rem;
+  font-family: monospace;
+  font-weight: 350;
+  line-height: 1.5;
+  color: #151110;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1.5px solid #8a82df4b;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
-    <div class="form-group">
-      <label for="achievements">Achievements:</label>
-      <input type="text" class="form-control" name="achievements" placeholder="Enter your achievements">
-    </div>
+.btn-primary {
+  --bs-btn-color: rgb(248, 250, 237);
+  --bs-btn-bg: var(--bs-green);}
 
-    <div class="form-group">
-      <label for="experience">Experiences:</label>
-      <input type="text" class="form-control" name="experience" placeholder="Enter your experience">
-    </div>
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div
+              class="card shadow-2-strong card-registration"
+              style="border-radius: 15px"
+            >
+              <div class="card-body p-4 p-md-5">
+                <h3 style="text-align: center"> Enter Your Details </h3><br>
+                <form action="/jobseeker/update" method="post">
 
-    <div class="form-group">
-      <label for="skills">Skills:</label>
-      <input type="text" class="form-control" name="skills" placeholder="Enter your skills">
-    </div>
+                  <div class="form-group">
+                    <label for="id">User ID:</label>
+                    <input type="id" class="form-control" name="jobseekerId" value=<%=''+data.jobseekerId%> readonly>
+                  </div>
+                <form><br><br>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input
+                          type="text" 
+                          name="firstName" value=<%=''+data.firstName%>
+                          class="form-control form-control-lg"/>
+                        <label class="form-label" for="firstName"
+                          >First Name</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input
+                          type="text" 
+                          name="lastName" value=<%=''+data.lastName%>
+                          class="form-control form-control-lg"
+                        />
+                        <label class="form-label" for="lastName"
+                          >Last Name</label
+                        >
+                      </div>
+                    </div>
+                  </div>
 
-    <div class="form-group">
-      <label for="certificates">Certificates:</label>
-      <input type="text" class="form-control" name="certificates" placeholder="Enter your certificates">
-    </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-outline">
+                        <input
+                          type="text" 
+                          name="achievements" required
+                          class="form-control form-control-lg" placeholder="Enter Your Achievements"
+                        />
+                        <label class="form-label" for="achievements"
+                          >Achievements</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="experience" required
+                          class="form-control form-control-lg" placeholder="Enter Your experience"
+                        />
+                        <label class="form-label" for="experience"
+                          >Eperiences</label
+                        >
+                      </div>
+                    </div>
+                  </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-   
-  </form>
-</div>
+                  <div class="row">
+                    <div class="col-12">
+                      <select class="select form-control-lg" required >
+                        <option name="none">Select</option>
+                        <option name="Secondary" >Secondary</option>
+                        <option name="Higher Secondary" >Higher Secondary</option>
+                        <option name="Bachelor" >Bachelor</option>
+                        <option name="Master's" >Master's</option>
+                        <option name="Phd" >PhD</option>
+                        <option name="Others" >Others</option>
+                      </select>
+                      <label class="form-label select-label"
+                        >  Select Your Qualification</label
+                      >
+                    </div>
+                  </div><br>
 
-</body>
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="skills" required
+                          class="form-control form-control-lg" placeholder="Enter Your Skills"
+                        />
+                        <label class="form-label" for="skills"
+                          >Skills</label
+                        >
+                      </div>
+                    </div><br>
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="certificates" required
+                          class="form-control form-control-lg" placeholder="Enter Your Certificates"
+                        />
+                        <label class="form-label" for="certificates"
+                          >Certificates</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 pt-1">
+                    <input
+                      class="btn btn-primary btn-lg"
+                      type="submit"
+                      value="Submit"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
+
