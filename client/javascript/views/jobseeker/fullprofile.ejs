@@ -1,152 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--Author : Rakibul Islam-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
     <title>Profile Page</title>
-<style>
-* {
-    margin: 0;
-}
-
-body {
-    height: 100vh;
-  background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
-  background-size: 100%;
-    font-family: Arial;
-    overflow: hidden;
-}
-/* Design for img and profile */
-.sidenav {
-    position: absolute;
-    top: 130px;
-    width: 350px;
-    background-color: #fff;
-    border-radius: 48px;
-    box-shadow: 1px 1px 8px 0 grey;
-    height: auto;
-    margin-bottom: 20px;
-    padding: 40px 10px 20px 5px;
-}
-
-.profile {
-    margin-bottom: 20px;
-    margin-top: -12px;
-    text-align: center;
-}
-
-.profile img {
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px 1px grey;
-}
-
-.name {
-    font-size: 20px;
-    font-weight: bold;
-    padding-top: 20px;
-}
-
-.job {
-    font-size: 16px;
-    font-weight: bold;
-    padding-top: 10px;
-}
-
-.url, hr {
-    text-align: center;
-
-}
-
-.url hr {
-    margin-left: 20%;
-    width: 60%;
-}
-
-.url a {
-    color: #818181;
-    display: block;
-    font-size: 20px;
-    margin: 10px 0;
-    padding: 6px 8px;
-    text-decoration: none;
-}
-
-.url a:hover, .url .active {
-    background-color: #e66d45;
-    border-radius: 28px;
-    color: #000;
-    margin-left: 14%;
-    width: 65%;
-}
-.cvbtn {
-    background-color: #457de6;
-    border-radius: 28px;
-    color: #000;
-    margin-left: 14%;
-    width: 65%;
-    font-size: 20px;
-    margin: 10px 0;
-    padding: 6px 8px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-/* Main Table Design */
-.main {
-    margin-top: 2%;
-    margin-left: 29%;
-    font-size: 28px;
-    padding: 0 10px;
-    width: 58%;
-    position: relative;
-
-}
-
-.main h2 {
-    color: #333;
-    margin-bottom: 16px;
-    text-align:left; font-size:24px; text-transform:uppercase; color:#222; letter-spacing:1px;
-  font-family:"Playfair Display", serif; font-weight:100;
-
-}
-
-.main .card {
-    background-color: #fff;
-    border-radius: 25px;
-    box-shadow: 1px 1px 8px 0 grey;
-    height: auto;
-    max-width: 700px;
-    margin-bottom: 20px;
-    padding: 20px 0 20px 50px;
-}
-
-.main .card table {
-    border: none;
-    font-size: 16px;
-    height: 200px;
-    width: 60%;
-}
-h1{
-            text-align:center; font-size:50px; text-transform:uppercase; color:#222; letter-spacing:1px;
-  font-family:"Playfair Display", serif; font-weight:400;
+    <style>
+        * {
+            margin: 0;
         }
-        
-.topright {
-  position: absolute;
-  top: 22px;
-  right: 176px;
-  font-size: 18px;
-}
-</style>
+
+        body {
+            height: 100vh;
+            background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
+            background-size: 100%;
+            font-family: Arial;
+            /* overflow: hidden; */
+        }
+
+        /* Design for img and profile */
+        .sidenav {
+            position: absolute;
+            top: 200px;
+            width: 350px;
+            background-color: #fff;
+            border-radius: 48px;
+            box-shadow: 1px 1px 8px 0 grey;
+            height: auto;
+            margin-bottom: 20px;
+            padding: 40px 10px 20px 5px;
+        }
+
+        .profile {
+            margin-bottom: 20px;
+            margin-top: -12px;
+            text-align: center;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px 1px grey;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .job {
+            font-size: 16px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        .url,
+        hr {
+            text-align: center;
+
+        }
+
+        .url hr {
+            margin-left: 20%;
+            width: 60%;
+        }
+
+        .url a {
+            color: #818181;
+            display: block;
+            font-size: 20px;
+            margin: 10px 0;
+            padding: 6px 8px;
+            text-decoration: none;
+        }
+
+        .url a:hover,
+        .url .active {
+            background-color: #e66d45;
+            border-radius: 28px;
+            color: #000;
+            margin-left: 14%;
+            width: 65%;
+        }
+
+        .cvbtn {
+            background-color: #457de6;
+            border-radius: 28px;
+            color: #000;
+            margin-left: 14%;
+            width: 65%;
+            font-size: 20px;
+            margin: 10px 0;
+            padding: 6px 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Main Table Design */
+        .main {
+            margin-top: 2%;
+            margin-left: 29%;
+            font-size: 28px;
+            padding: 0 10px;
+            width: 58%;
+            position: relative;
+
+        }
+
+        .main h2 {
+            color: #333;
+            margin-bottom: 16px;
+            text-align: left;
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #222;
+            letter-spacing: 1px;
+            font-family: "Playfair Display", serif;
+            font-weight: 100;
+
+        }
+
+        .main .card {
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 1px 1px 8px 0 grey;
+            height: auto;
+            max-width: 700px;
+            margin-bottom: 20px;
+            padding: 20px 0 20px 50px;
+        }
+
+        .main .card table {
+            border: none;
+            font-size: 16px;
+            height: 150px;
+            width: 60%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            text-transform: uppercase;
+            color: #222;
+            letter-spacing: 1px;
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+        }
+
+        .topright {
+            position: absolute;
+            top: 22px;
+            right: 176px;
+            font-size: 18px;
+        }
+    </style>
 </head>
+
 <body>
-        <div class="title">
-            <br><h1>Profile</h1><br><hr>
-        </div>
+
+    <div class="title">
+        <br>
+        <h1>Your Profile</h1><br>
+        <hr>
+    </div>
     <div class="sidenav">
         <div class="profile">
-            <img src="https://cdn1.iconfinder.com/data/icons/instagram-ui-colored/48/JD-18-512.png" alt="" width="100" height="100">
+            <img src="https://cdn1.iconfinder.com/data/icons/instagram-ui-colored/48/JD-18-512.png" alt="" width="100"
+                height="100">
 
             <div class="name">
                 <%= data.firstName + ' ' +data.lastName%>
@@ -160,81 +190,106 @@ h1{
             <div class="url">
                 <button class="cvbtn" onclick="printDiv()">Download CV</button>
                 <a class="active" href="/jobseeker/deleteuser">Delete</a>
+                <a class="active" style="background-color: #000;color: white;" href="/jobseeker/dashboard/">Back to
+                    Dashboard</a>
                 <hr align="center">
             </div>
         </div>
     </div>
     <div class="main">
-      
+
         <div class="card">
             <div class="card-body" id="card-body">
-                
+
                 <table>
                     <tbody>
-                            <tr>
-                                <h2>Basic Information</h2><div class="topright">
-                            <td>First Name</td>
-                            <td>:</td>
-                            <td><%= data.firstName %></td>
+                        <tr>
+                            <h2>Basic Information</h2>
+                            <div class="topright">
+                                <td>First Name</td>
+                                <td>:</td>
+                                <td>
+                                    <%= data.firstName %>
+                                </td>
                         </tr>
                         <tr>
                             <td>Last Name</td>
                             <td>:</td>
-                           <td><%= data.lastName %></td>
+                            <td>
+                                <%= data.lastName %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Phone Number</td>
                             <td>:</td>
-                           <td><%= data.phoneNumber %></td>
+                            <td>
+                                <%= data.phoneNumber %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Age</td>
                             <td>:</td>
-                            <td><%= data.age %></td>
+                            <td>
+                                <%= data.age %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td><%= data.address %> </td>
+                            <td>
+                                <%= data.address %>
+                            </td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
                 <table>
                     <tbody>
-                            <tr>
-                               <hr><h2>Other Information</h2><hr>
+                        <tr>
+                            <hr>
+                            <h2>Other Information</h2>
+                            <hr>
                             <td>Achievements</td>
                             <td>:</td>
-                            <td><%= data.achievements %></td>
+                            <td>
+                                <%= data.achievements %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Certificates</td>
                             <td>:</td>
-                           <td><%= data.certificates %></td>
+                            <td>
+                                <%= data.certificates %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Qualification</td>
                             <td>:</td>
-                           <td><%= data.qualification %></td>
+                            <td>
+                                <%= data.qualification %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Skills</td>
                             <td>:</td>
-                           <td><%= data.skills %></td>
+                            <td>
+                                <%= data.skills %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Experience</td>
                             <td>:</td>
-                           <td><%= data.experience %></td>
+                            <td>
+                                <%= data.experience %>
+                            </td>
                         </tr>
-            </tbody>
-        </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script>
-            function printDiv() {
+        function printDiv() {
             var divContents = document.getElementById("card-body").innerHTML;
             var a = window.open('', '', 'height=1080, width=1920');
             a.document.write('<html>');
@@ -246,5 +301,9 @@ h1{
             a.print();
         }
     </script>
+    <div class="padding">
+        <script language="javascript" type="text/javascript" src="/header_footer/footer.js"></script>
+    </div>
 </body>
+
 </html>

@@ -64,19 +64,22 @@
       --bs-btn-color: rgb(248, 250, 237);
       --bs-btn-bg: var(--bs-green);
     }
-    .p-conf, .n-conf {
-		width: calc(100% - 22px);
-		border: 2px solid green;
-		border-radius: 4px;
-		padding: 8px 10px;
-		margin: 4px 0px;
-		background-color: rgba(0, 249, 12, 0.5);
-		display: none;
-	}
-	.n-conf {
-		border-color: red;
-		background-color: rgba(255, 0, 4, 0.5);
-	}
+
+    .p-conf,
+    .n-conf {
+      width: calc(100% - 22px);
+      border: 2px solid green;
+      border-radius: 4px;
+      padding: 8px 10px;
+      margin: 4px 0px;
+      background-color: rgba(0, 249, 12, 0.5);
+      display: none;
+    }
+
+    .n-conf {
+      border-color: red;
+      background-color: rgba(255, 0, 4, 0.5);
+    }
   </style>
 
 </head>
@@ -153,23 +156,25 @@
                 <div id="verifier" class="col-md-6 mb-4 pb-2" style="display: none">
                   <input type="text" id="verificationcode" placeholder="OTP Code" class="form-control form-control-lg">
                   <input type="button" class="btn btn-dark mt-2" id="verify" value="Verify" onClick="codeverify()">
-                  </div>
+                </div>
                 <div id="verifier-display" class="col-md-6 mb-4 pb-2">
-                    <div class="p-conf">Number Verified</div>
-                    <div class="n-conf">OTP ERROR</div>
+                  <div class="p-conf">Number Verified</div>
+                  <div class="n-conf">OTP ERROR</div>
                 </div>
 
                 <div class="col-md-6 mb-4 pb-2">
                   <div class="mt-2 mb-3" id="recaptcha-container"></div>
-                  <input class="btn btn-primary btn-lg m-2" type="submit" id="submitbtn" value="Submit" style="display: none;"/>
+                  <input class="btn btn-primary btn-lg m-2" type="submit" id="submitbtn" value="Submit"
+                    style="display: none;" />
                   <input class="btn btn-warning btn-lg" type="button" id="send" value="Get OTP" onClick="phoneAuth()">
                 </div>
+                <a class="btn btn-dark btn-lg" type="button" id="send" href="/jobseeker/login">Back</a>
               </form>
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
   <!--	add firebase SDK-->
@@ -194,7 +199,7 @@
     // function for send message
     function phoneAuth() {
       var number = document.getElementById('phoneNumber').value;
-      number='+91'+number
+      number = '+91' + number
       firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function (confirmationResult) {
         window.confirmationResult = confirmationResult;
         coderesult = confirmationResult;
