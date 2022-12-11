@@ -15,26 +15,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-}
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
 
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-}
+        #myTable th,
+        #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
 
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
 
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
-}
-h1 {
+        #myTable tr.header,
+        #myTable tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        h1 {
             text-align: center;
             font-size: 50px;
             text-transform: uppercase;
@@ -48,10 +51,13 @@ h1 {
             margin: 0;
             padding: 0;
             height: 100vh;
-  background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
-  background-size: 100%;
-            height: 100vh;
-            /* overflow: hidden; */
+            background: -webkit-repeating-linear-gradient(75deg, #8eddcf, #7c65a9);
+            background-size: 100%;
+        }
+
+        a {
+            color: rgb(87, 0, 81);
+            font-weight: bold;
         }
 
         .center {
@@ -64,131 +70,104 @@ h1 {
             border-radius: 10px;
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
         }
+
         .center h1 {
             text-align: center;
             padding: 20px 0;
             border-bottom: 1px solid silver;
         }
 
-
-        .popup {
-
-            width: 400px;
-            background: #fff;
-            border-radius: 6px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.1);
-            text-align: center;
-            padding: 0 30px 30px;
-            color: #333;
-            visibility: hidden;
-            transition: transform 0.4s, top 0.4s;
-
-
-        }
-
-        .open-popup {
-            visibility: visible;
-            top: 50%;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .popup img {
-            width: 100px;
-            margin-top: -50px;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-        }
-
-        .popup h2 {
-            font-size: 38px;
-            font-weight: 500;
-            margin: 30px 0 10px;
+        .padding {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 
 </head>
 
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/home.html">ChainHire</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/admin/dashboard">DashBoard</a></li>
+                    <li><a href="/admin/alljobs">All Jobs <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="/admin/allusers">All Users <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
+    <div class="container">
 
-<body class="container">
+        <br>
+        <h1>Users</h1><br>
 
-    <br>
-    <h1>Users</h1><br>
+        <div>
+            <h2 style="text-align:center">Total Registered Users : <%=data.length%>
+            </h2>
+        </div>
+        <table class="content-table" id="myTable">
 
-    <div>
-        <h2 style="text-align:center">Total Registered Users : <%=data.length%>
-        </h2>
-    </div>
-    <table class="content-table" id="myTable">
-
-        <thead>
-            <tr class="header">
-                <th scope="col">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Address</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            <% for(var i=0; i < data.length; i++) { %>
-                <tr>
-
-                    <td>
-                        <%= data[i].Record.jobseekerId %>
-                    </td>
-                    <td>
-                        <%= data[i].Record.firstName %>
-                    </td>
-                    <td>
-                        <%= data[i].Record.lastName %>
-                    </td>
-                    <td>
-                        <%= data[i].Record.age %>
-                    </td>
-                    <td>
-                        <%= data[i].Record.phoneNumber %>
-                    </td>
-                    <td>
-                        <%= data[i].Record.address %>
-                            <!-- <div class="container">
-                            <button type="more" class="btn" onclick="openPopup()"  value="More">Details</button>
-                             <div class="popup" id="popup">
-                                <img src="tick.png" >
-                                <h2>Qualification</h2>
-                                <p>BCA</p>
-                                <h2>Skills</h2>
-                                <P>C,PYTHON,JAVA</P>
-
-                                <button type="button"  onclick="closePopup()">Ok</button>
-                                </div>
-    
-                             </div> -->
-                    </td>
-                    <td>
-                        <a href=<%="/admin/deleteuser/" + data[i].Record.jobseekerId %>>Delete</a>
-                    </td>
+            <thead>
+                <tr class="header">
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Delete</th>
                 </tr>
-                <% } %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="table-group-divider">
+                <% for(var i=0; i < data.length; i++) { %>
+                    <tr>
 
-    <script>
-        let popup = document.getElementById("popup");
-        function openPopup() {
-            popup.classList.add("open-popup");
-        }
-        function closePopup() {
-            popup.classList.remove("open-popup");
-        }
+                        <td>
+                            <%= data[i].Record.jobseekerId %>
+                        </td>
+                        <td>
+                            <%= data[i].Record.firstName %>
+                        </td>
+                        <td>
+                            <%= data[i].Record.lastName %>
+                        </td>
+                        <td>
+                            <%= data[i].Record.age %>
+                        </td>
+                        <td>
+                            <%= data[i].Record.phoneNumber %>
+                        </td>
+                        <td>
+                            <%= data[i].Record.address %>
+                        </td>
+                        <td>
+                            <a href=<%="/admin/deleteuser/" + data[i].Record.jobseekerId %>>Delete</a>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
 
-    </script>
+    </div>
+    <div class="padding">
+        <script language="javascript" type="text/javascript" src="../header_footer/footer.js"></script>
+    </div>
 </body>
 
 </html>
