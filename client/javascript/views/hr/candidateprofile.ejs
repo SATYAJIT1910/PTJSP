@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Full Profile View</title>
 <style>
 body{
-  height: 100vh;
+  height: 130vh;
   background: linear-gradient(to bottom right, rgb(69, 233, 216), rgb(243, 146, 42));
   background-size: 100%;
 }
@@ -33,10 +32,31 @@ body{
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
+.padding {
+            bottom: 0;
+            width: 100%;
+
+        }
 </style>
 </head>
+<body>
 
-<body class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="/home.html">ChainHire</a>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/jobseeker/dashboard">Back to Dashboard</a>
+              </li>
+          </div>
+        </div>
+      </nav>
+
+<div class="container mt-3">
     <table class="content-table" id="myTable">
         <tr class="header">
             <th colspan=2 >Candidate Profile View</th>
@@ -83,11 +103,15 @@ body{
         </tr>
     </table>
     <div class="container text-center mt-5">
-        <a href=<%="/hr/hired/"+ jobpostingId +"/"+ data.jobseekerId%> class="btn btn-primary">Hire</a>
+        <a href=<%="/hr/hired/"+ jobpostingId +"/"+ data.jobseekerId%> class="btn btn-primary btn-lg">Hire</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+</div>
+<div class="padding">
+    <div style="margin-top:10%;"></div>
+    <script language="javascript" type="text/javascript" src="/header_footer/footer.js"></script>
+</div>
 </body>
-
 </html>
