@@ -24,6 +24,7 @@ router.post('/login/', async (req, res) => {
         if (usroriginalpassword == password) {
             req.session.loggedin = true
             req.session.username = usrobj.jobseekerId
+            req.session.usertype = 'js'
             res.redirect('/jobseeker/dashboard')
         } else {
             res.status(401).send("<script>window.alert('Invaild credentials');window.location.replace('/jobseeker/login')</script>");
@@ -45,7 +46,7 @@ router.post('/createuser', async (req, res) => {
 })
 // Dashboard for the job seeker
 router.get('/dashboard', async (req, res) => {
-    if (req.session.loggedin) {
+    if (req.session.loggedin && req.session.usertype == 'js') {
         res.render('jobseeker/dashboard', { "usrdata": req.session.username })
     }else{
         res.redirect('/jobseeker/login')
