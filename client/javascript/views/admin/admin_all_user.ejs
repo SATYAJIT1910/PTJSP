@@ -7,51 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin All Users</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style>
-        .content-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 1.5em;
-            min-width: 400px;
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
 
-        }
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
 
-        .content-table thead tr {
-            background-color: #CC9900;
-            color: #fff;
-            text-align: left;
-            font-weight: bold;
-        }
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
 
-        .content-table th,
-        .content-table td {
-            padding: 22px 25px;
-        }
-
-        .content-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-        .content-table tbody tr:nth-of-type(evn) {
-            background-color: #f3f3f3;
-        }
-
-        .content-table tbody tr:last-of-type {
-            border-bottom: 5px solid #CC9900;
-        }
-
-        .content-table td {
-            text-align: center;
-        }
-
-        .content-table {
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        h1 {
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+h1 {
             text-align: center;
             font-size: 50px;
             text-transform: uppercase;
@@ -61,14 +44,14 @@
             font-weight: 400;
         }
 
-
-
         body {
             margin: 0;
             padding: 0;
-            background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
             height: 100vh;
-            overflow: hidden;
+  background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
+  background-size: 100%;
+            height: 100vh;
+            /* overflow: hidden; */
         }
 
         .center {
@@ -81,7 +64,6 @@
             border-radius: 10px;
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
         }
-
         .center h1 {
             text-align: center;
             padding: 20px 0;
@@ -132,19 +114,19 @@
 
 
 
-<body>
+<body class="container">
 
     <br>
-    <h1><u>Jobseeker Details</u></h1><br>
+    <h1>Users</h1><br>
 
     <div>
         <h2 style="text-align:center">Total Registered Users : <%=data.length%>
         </h2>
     </div>
-    <table class="content-table">
+    <table class="content-table" id="myTable">
 
         <thead>
-            <tr>
+            <tr class="header">
                 <th scope="col">ID</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
