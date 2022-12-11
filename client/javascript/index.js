@@ -53,6 +53,10 @@ app.listen(3000, async () => {
 app.get('/', (req, res) => {
     res.redirect("home.html")
 })
+app.post('/',(req,res)=>{
+    console.log(req.body.jobkeyword)
+    res.redirect('/jobseeker/searchjobs/?value='+req.body.jobkeyword)
+})
 // This is used to log out the different actors of portal
 app.get('/logout', (req, res) => {
     req.session.destroy();

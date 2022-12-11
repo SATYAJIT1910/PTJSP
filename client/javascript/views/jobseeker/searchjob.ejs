@@ -271,6 +271,12 @@
         </table>
     </div>
     <script>
+        const params = new URLSearchParams(window.location.search)
+        console.log(params.get('value'))
+        document.getElementById("myInput").value= params.get('value').toString()
+        myFunction()
+    </script>
+    <script>
         let popup = document.getElementById("popup");
         function openPopup() {
             popup.classList.add("open-popup");

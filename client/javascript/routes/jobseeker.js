@@ -47,6 +47,8 @@ router.post('/createuser', async (req, res) => {
 router.get('/dashboard', async (req, res) => {
     if (req.session.loggedin) {
         res.render('jobseeker/dashboard', { "usrdata": req.session.username })
+    }else{
+        res.redirect('/jobseeker/login')
     }
 })
 // Update a job seeker page
@@ -134,6 +136,14 @@ router.get('/deleteuser', async (req, res) => {
 router.get('/searchjobs/', async (req, res) => {
     try {
         res.render('jobseeker/searchjob', { "data": JSON.parse(await blockexecute.queryAllJobposting()), "username": req.session.username });
+    } catch (error) {
+        res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
+    }
+})
+// Job seeker searches for job with external keyword
+router.get('/searchjobs/:keyword', async (req, res) => {
+    try {
+        res.render('jobseeker/searchjob', { "data": JSON.parse(await blockexecute.queryAllJobposting()), "username": req.session.username ,"keyword":req.params.keyword});
     } catch (error) {
         res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
     }
