@@ -12,18 +12,8 @@
 --blue: #3e53d8;
 }
 
-*{
-  font-family:"Playfair Display", serif;
-  margin:0; padding:0;
-  box-sizing: border-box;
-  outline: none; border:none;
-  text-decoration: none;
-  text-transform: capitalize;
-  transition: all .2s linear;
-}
 
-
-html{
+.home_old{
   font-size: 62.5%;
   overflow-x: hidden;
   scroll-padding-top: 6.5rem;
@@ -319,7 +309,9 @@ html{
   line-height: 27px;
   margin: 27px 0 23px 0;
 }
-
+.padding{
+  font-size: 100%;
+}
 
 
 

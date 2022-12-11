@@ -4,57 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Webpage</title>
+    <title>Home</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="./styles/style.css">
 
 </head>
 <body>
-<header>
 
-    <div class="header-1">
-
-        <a href="#" class="logo"><i class="fas fa-briefcase"></i>PTJSP</a>
-
-<!--
-        <form action="" class="search-box-container">
-            <input type="search" id="search-box" placeholder="search here...">
-            <label for="search-box" class="fas fa-search"></label>
-        </form>
-    -->
-    </div>
-
-    <div class="header-2">
-<!--
-        <div id="menu-bar" class="fas fa-bars"></div>
--->
-        <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="/jobseeker/login">Jobseeker</a>
-            <a href="/hr/login">Hr</a>
-            
-            <a href="#footer">contact</a>
-        </nav>
-
-        <div class="icons">
-            
-        <a href="/admin/login"  class="fas fa-user-alt"> Admin</a>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="/home.html">ChainHire</a>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/jobseeker/login">Job Seeker</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/hr/login">Recruiter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/about">About</a>
+              </li>
+              </ul>
+              <a class="nav-link btn btn-warning" aria-current="page" href="/admin/login">Admin</a>
+          </div>
         </div>
+      </nav>
 
-    </div>
-
-
-</header>
  
 
 <!--Search bar-->
 <div class="search_bar" id="home">
-    <p>Find your <br>Best Job Here</p>
+    <p>ChainHire</p><br><h3>Your path to professional success starts here.<br></h3><br><h3>Find your dream job, with the power of Blockchain behind you.</h3><br>
 <div class="input_field">
     <i id="search_icon"  class="fas fa-search"></i>
     <input type="text"  placeholder="job title or keyword">
@@ -62,72 +54,6 @@
 
 </div>
 </div>
- <!-- Job Category Section  -->
- 
- <div class="job_category">
-    <h3>Explore Jobs Category</h3>
-    <div class="job_category_container" >
-
-        <div class="category_card">
-            <img src="https://images.ctfassets.net/pdf29us7flmy/5nAQrlpZiZn0qU1wZ70vIG/93e6122ee0cee95041daf12f8e964236/GettyImages-755763831_optimized.jpg" width="200px">
-            <h4>Finance Careers</h4>
-            <p>If the rich and the famous characters portrayed in Hollywood aren’t businessmen they are more likely to be investment bankers, traders, asset / portfolio managers & financial analysts.
-
-                Jobs in corporate finance, project finance, insurance management or regular (retail) banking may not be as glamorous, but they have their own rewards.</p>
-        </div>
-        <div class="category_card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxyOzXM2j1GHa-7WXxI3JoVNf7FtdDi0UvhJ2AaoKrMA&s" width="200px">
-            <h4>Architecture and engineering</h4>
-            <p>People in the architecture and planning fields are responsible for designing new structures or creating aesthetically pleasing, practical and structurally sound environments. Many positions require an undergraduate or graduate degree.</p>
-        </div>
-        <div class="category_card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5WwXk_AAme_CY24FieZpHtg2Rug4_gWwqgt4J481Q4w&s" width="200px">
-            <h4>Communications</h4>
-            <p>The communications career field is about mastering the art of delivering a targeted message to diverse groups of people.</p>
-        </div>
-        <div class="category_card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9ieRDhoxI54bj4H8tJmLZqMUUDy-8DgsIfbMZ8vyeA&s" width="200px">
-            <h4>Education</h4>
-            <p>The education field is dedicated to the art of skillfully disseminating knowledge and information to people. The most obvious job in this field are teachers, but it is not just limited to teaching. There are also management, administrative and board member jobs,</p>
-        </div>
-        <div class="category_card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLLpI3lK4_bHP9s-qq-cdMcmHJr7BtYZL8VZpY0knyGw&s" width="200px">
-            <h4>Science and technology</h4>
-            <p>Science and technology is a diverse career field that generally involves scientific research and the development of innovative technologies that benefit humanity.            </p>
-        </div>
-        <div class="category_card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFNe7rus3byaRhyfZ3Aer9kIzruIYqMeahpXUVsxVHdQ&s" width="200px">
-            <h4>Web Developer</h4>
-            <p>A web developer is a programmer who develops World Wide Web applications using a client–server model. The applications typically use HTML, CSS and JavaScript in the client, PHP, ASP.NET, Python, Node.js, Go or Java in the server, and http for communications between client and server.</p>
-        </div>
-        <div class="category_card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSajSctE5fSgrfEN2aEqHOICaoSU2u2tN5dkg&usqp=CAU" width="200px">
-            <h4>Installation, repair and maintenance</h4>
-            <p>The installation, repair and maintenance career field is dedicated to helping customers operate specialized machinery. Workers in this field have a vast knowledge of their trade. They help to install, maintain, troubleshoot and repair a variety of different objects in the modern world.</p>
-        </div>
-        <div class="category_card">
-            <a href="#">
-                <p>See All Category</p>
-                <i class="uil uil-angle-right-b">&rarr;</i>
-            </a>
-        </div>
-
-    </div>
-</div>
- 
-<!--about Companies-->
-<div class="companies">
-    <div class="companies_details">
-        <h3>Over 1000+ companies <br>job posted </h3>
-        <p>IN your portal more than 100+ companies already registered.
-        </p>
-        <p>This companies are mainly here for hired you and give you an a best opportunity for your growing career.</p>
-    </div>
-    <div class="companies_img">
-        <img src="https://www.goireland.in/images/companies-in-ireland.jpg" width="500px">
-    </div>
-</div>
-
 
 
 <!--About Customer Reviews-->
@@ -232,62 +158,10 @@
           }
 
       </script>
-
-<!--Footer Section-->
-<section class="footer" id="footer">
-    
-
-    <div class="box-container" >
-
-        <div class="box">
-            <h3> PTJSP Job Portal <i class="fas fa-gem me-3"></i> </h3><br>
-            <p>Here you can find your best jobs .</p>
-            <div class="share">
-                <a href="#" class="fab fa-facebook-f"></a>
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-github"></a>
-                <a href="#" class="fab fa-linkedin"></a>
-            </div>
-        </div>
-
-        <div class="box">
-            <h3>contact info</h3><br>
-            <div class="head">
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +91-9874561231 </a>
-            <a href="#" class="links"> <i class="fas fa-phone"></i> +91-1234567892 </a>
-            <a href="#" class="links"> <i class="fas fa-envelope"></i> ptjsp@gmail.com </a>
-            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Barasat, Kolkata, india - 700126 </a>
-        </div>
-        </div>
-
-        <div class="box">
-            <h3>quick links</h3><br>
-            <div class="head">
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Home </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Categories </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Review </a>
-            
-        </div>
-        </div>
-
-        <div class="box">
-            <h3>Job Updates</h3>
-            <p>subscribe for get latest jobs updates</p>
-            <input type="email" placeholder="your email" class="email">
-        </div>
-
-    </div>
-
-   
-
-  
-</section>
-
-<div class="fo">
-<h1 class="credit"> created by <span> mr. PTJSP designer </span> | all rights reserved! </h1>
 </div>
-
-<!-- footer section ends -->
+<div class="padding">
+    <script language="javascript" type="text/javascript" src="../header_footer/footer.js"></script>
+  </div>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 
