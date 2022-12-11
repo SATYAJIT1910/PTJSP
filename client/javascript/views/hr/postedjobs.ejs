@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <!--Author : Rakibul Islam-->
 
@@ -11,49 +11,25 @@
 
     <title>Job List</title>
     <style>
-        .content-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 1.5em;
-            min-width: 400px;
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
 
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
 
-        }
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
 
-        .content-table thead tr {
-            background-color: #3781f0;
-            color: #fff;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        .content-table th,
-        .content-table td {
-            padding: 12px 15px;
-        }
-
-        .content-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-        .content-table tbody tr:nth-of-type(evn) {
-            background-color: #f3f3f3;
-        }
-
-        .content-table tbody tr:last-of-type {
-            border-bottom: 2px solid #1966d8;
-        }
-
-        .content-table td {
-            text-align: center;
-        }
-
-        .content-table {
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
 
         h1 {
             text-align: center;
@@ -70,9 +46,9 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: linear-gradient(109.6deg, rgba(156, 252, 248, 1) 11.2%, rgb(110, 251, 145) 91.1%);
+            background-image: linear-gradient(109.6deg, rgb(131, 254, 211) 11.2%, rgb(108, 247, 143) 91.1%);
             height: 100vh;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
 
         .center {
@@ -177,15 +153,13 @@
 <body class="container">
 
     <br>
-    <h1><u>Jobs</u></h1><br><br>
+    <h1>Jobs</h1><br><br>
     <p>Filter by Search</p>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Search" class="mb-5">
     <table id="myTable" class="content-table">
 
         <thead>
-            <tr>
-
-
+            <tr class="header">
                 <th scope="col">Profile Name</th>
                 <th scope="col">Age limit</th>
                 <th scope="col">Company Name</th>

@@ -16,49 +16,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style type="text/css">
-        .content-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 1.5em;
-            min-width: 400px;
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
 
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
 
-        }
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
 
-        .content-table thead tr {
-            background-color: #CC9900;
-            color: #fff;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        .content-table th,
-        .content-table td {
-            padding: 12px 15px;
-        }
-
-        .content-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-        .content-table tbody tr:nth-of-type(evn) {
-            background-color: #f3f3f3;
-        }
-
-        .content-table tbody tr:last-of-type {
-            border-bottom: 2px solid #CC9900;
-        }
-
-        .content-table td {
-            text-align: center;
-        }
-
-        .content-table {
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
 
         h1 {
             text-align: center;
@@ -75,9 +51,9 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            background-image: linear-gradient(109.6deg, rgb(131, 254, 211) 11.2%, rgb(108, 247, 143) 91.1%);
             height: 100vh;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
 
         .center {
@@ -95,6 +71,22 @@
             text-align: center;
             padding: 20px 0;
             border-bottom: 1px solid silver;
+        }
+
+        #myInput {
+            background-image: url('/css/searchicon.png');
+
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: auto;
+            font-size: 16px;
+            padding: 10px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+
+            margin: 0 auto;
+            display: inline-block;
+
         }
     </style>
 
@@ -128,7 +120,7 @@
 <body>
 
     <br>
-    <h1><u>Job Details </u></h1>
+    <h1>Jobs</h1>
 
     <div>
         <h2 style="text-align:center">Total Registered Jobs : <%=data.length%>
@@ -137,7 +129,7 @@
     <table id="myTable" class="content-table">
 
         <thead>
-            <tr>
+            <tr class="header">
 
 
                 <th scope="col">HRID</th>
