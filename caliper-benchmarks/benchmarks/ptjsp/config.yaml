@@ -1,0 +1,44 @@
+test:
+  workers:
+    number: 5
+  rounds:
+    - label: Register a JobSeeker
+      txNumber: 1000
+      rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 5
+      workload:
+        module: benchmarks/ptjsp/registerJobseeker.js
+    - label: Update a JobSeeker
+      txNumber: 1000
+      rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 5
+      workload:
+        module: benchmarks/ptjsp/updateJobseeker.js
+    - label: Register a JobPosting
+      txNumber: 1000
+      rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 5
+      workload:
+        module: benchmarks/ptjsp/registerJobPosting.js
+    - label: Apply for Job
+      txNumber: 1000
+      rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 5
+      workload:
+        module: benchmarks/ptjsp/applyforjob.js
+    - label: Read a Job
+      txNumber: 1000
+      rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 5
+      workload:
+        module: benchmarks/ptjsp/readjobsk.js
