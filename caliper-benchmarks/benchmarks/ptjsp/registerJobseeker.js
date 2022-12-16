@@ -47,7 +47,7 @@ class CreateCarWorkload extends WorkloadModuleBase {
      */
     async submitTransaction() {
         this.txIndex++;
-        let jobseekerId = 'JS'+'_'+this.workerIndex+'_'+this.txIndex.toString();
+        let jobseekerId = 'JS'+'_'+this.workerIndex+'_'+this.txIndex.toString()+'a';
         let firstName = FirstName[Math.floor(Math.random() * FirstName.length)];
         let lastName = LastName[Math.floor(Math.random() * LastName.length)];
         let password = Password[Math.floor(Math.random() * Password.length)];

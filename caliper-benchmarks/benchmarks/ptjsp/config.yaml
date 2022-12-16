@@ -7,7 +7,7 @@ test:
       rateControl:
           type: fixed-load
           opts:
-            transactionLoad: 5
+            transactionLoad: 100
       workload:
         module: benchmarks/ptjsp/registerJobseeker.js
     - label: Update a JobSeeker
@@ -15,7 +15,7 @@ test:
       rateControl:
           type: fixed-load
           opts:
-            transactionLoad: 5
+            transactionLoad: 100
       workload:
         module: benchmarks/ptjsp/updateJobseeker.js
     - label: Register a JobPosting
@@ -23,7 +23,7 @@ test:
       rateControl:
           type: fixed-load
           opts:
-            transactionLoad: 5
+            transactionLoad: 100
       workload:
         module: benchmarks/ptjsp/registerJobPosting.js
     - label: Apply for Job
@@ -31,7 +31,7 @@ test:
       rateControl:
           type: fixed-load
           opts:
-            transactionLoad: 5
+            transactionLoad: 100
       workload:
         module: benchmarks/ptjsp/applyforjob.js
     - label: Read a Job
@@ -39,6 +39,6 @@ test:
       rateControl:
           type: fixed-load
           opts:
-            transactionLoad: 5
+            transactionLoad: 100
       workload:
         module: benchmarks/ptjsp/readjobsk.js

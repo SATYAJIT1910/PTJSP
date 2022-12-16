@@ -52,7 +52,7 @@ class CreateCarWorkload extends WorkloadModuleBase {
      */
     async submitTransaction() {
         this.txIndex++;
-        let jobpostingId = 'JP'+'_'+this.workerIndex+'_'+this.txIndex.toString();
+        let jobpostingId = 'JP'+'_'+this.workerIndex+'_'+this.txIndex.toString()+'a';
         let HRId = hRId[Math.floor(Math.random() * hRId.length)];
         let profilename = Profilename[Math.floor(Math.random() * Profilename.length)];
         let qualification = Qualification[Math.floor(Math.random() * Qualification.length)];

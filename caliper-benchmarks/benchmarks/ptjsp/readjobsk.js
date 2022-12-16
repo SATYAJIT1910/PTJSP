@@ -51,7 +51,7 @@ class QueryCarWorkload extends WorkloadModuleBase {
      */
     async submitTransaction() {
         this.txIndex++;
-        let jobseekerId = 'JS'+'_'+this.workerIndex+'_'+this.txIndex.toString();
+        let jobseekerId = 'JS'+'_'+this.workerIndex+'_'+this.txIndex.toString()+'a';
         let args = {
             contractId: 'ptjsp',
             contractVersion: 'v1',
