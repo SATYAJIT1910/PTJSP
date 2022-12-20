@@ -141,7 +141,7 @@ sudo certbot certonly --standalone
 Run as 
 
 ```
-sudo npm prod
+sudo npm run prod
 ```
 <hr>
 
