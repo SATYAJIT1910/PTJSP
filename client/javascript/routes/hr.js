@@ -99,7 +99,7 @@ router.get('/candidate/:jobpostingId/:jobseekerId', async (req, res) => {
             res.render('hr/candidateprofile', { "data": data, "jobpostingId": req.params.jobpostingId })
 
         } catch (error) {
-            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
+            res.status(404).send("<script>window.alert('Candidate no longer available');</script>");
         }
     } else {
         res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
@@ -120,5 +120,28 @@ router.get('/hired/:jobpostingId/:jobseekerId/', async (req, res) => {
         res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
     }
 })
-
+router.get('/checkapplications/:jobid',async (req,res)=>{
+    if (req.session.loggedin && req.session.usertype == 'hr'){
+        try{
+            let jobid=req.params.jobid;
+            let data = JSON.parse(await blockexecute.queryJobPostingByHRId(req.session.username));
+            let newdata;
+            console.log(jobid)
+            console.log(data)
+            for(let i=0;i<data.length;i++){
+               // console.log(data.Key)
+                if(data[i].Key==jobid){
+                     newdata = data[i].Record.appliedCandidates
+                    // console.log(newdata)
+                     //res.json(newdata)
+                     res.render('hr/candidateapplications', { "data": newdata, "jobpostingId": jobid })
+                }
+            }
+        }catch(error){
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
+        }
+    }else{
+        res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
+    }
+})
 export default router;

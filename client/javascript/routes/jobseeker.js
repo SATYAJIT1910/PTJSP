@@ -154,9 +154,8 @@ router.get('/apply/:JPID', async (req, res) => {
 
     const jobseekerId = req.session.username;
     const jobpostingId = req.params.JPID;
-    if (req.session.loggedin) {
+    if (req.session.loggedin &&  req.session.usertype == 'js') {
         try {
-
             await blockexecute.applyforjob(JSON.stringify({ "jobseekerId": jobseekerId, "jobpostingId": jobpostingId }))
             res.status(200).send("<script>window.alert('You have sucessfully Applied. Thank You');window.location.replace('/jobseeker/searchjobs/')</script>")
         } catch (error) {
