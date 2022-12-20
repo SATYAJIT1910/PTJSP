@@ -1,0 +1,36 @@
+
+
+.bg-white {
+  background-color: #9bef9e27!important;
+}
+p.read{
+  color: rgb(40, 9, 9);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: small;
+  
+}
+.py-5 {
+  padding-top: 1rem!important;
+  padding-bottom: 1rem!important;
+}
+
+.mb-5 {
+  margin-bottom: 4rem!important;
+}
+
+/* @media (min-width: 1200px)
+.col-xl-3 {
+    flex: 0 0 auto;
+    width: 25%;
+} */
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+}
+body {
+  margin: 0;
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+}

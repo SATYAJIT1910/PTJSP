@@ -62,6 +62,9 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.status(200).send('<h3>Sucessfully Logged Out. Go to <a href="/">Home</a></h3>')
 })
+app.get('/about', (req, res) => {
+    res.redirect("about_page.html")
+})
 // Fall back page
 app.get('*',(req,res)=>{
     res.status(404).sendFile('404.html', { root: 'public/errorpages' })
