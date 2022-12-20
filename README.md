@@ -68,7 +68,7 @@ git clone git@github.com:SATYAJIT1910/PTJSP.git
 ```
 ./start.sh
 ```
-### Run the Server (go to client folder and then)
+### Run the Server (go to client/javascript/ folder and then)
 
 Run this for one time to install requirements
 ```
@@ -124,6 +124,25 @@ docker start $(docker ps -a -q)
 If you clean the network , then again you need to delete the <code>admin.id</code> and <code>appUser.id</code> from the <code>/client/javascript/wallet/</code> and again generate them using <code>enrollAdmin.js</code>
 and <code>registerUser.js</code>
 
+<hr>
+
+# Production Only
+
+## To generate SSL certificate for Server
+
+
+```
+sudo apt-get install certbot
+sudo certbot certonly --standalone
+```
+
+<br><b>Note: </b>Change the domain name in the <code>invokeprod.js</code> as per your setup</b>
+
+Run as 
+
+```
+sudo npm prod
+```
 <hr>
 
 ## Team Members
