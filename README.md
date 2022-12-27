@@ -181,10 +181,10 @@ sudo npm run prod
     </a>
 </td>
             </td>
-        <td align="center">
+        <!-- <td align="center">
     <a href="https://www.linkedin.com/in/aghosh0605/">
         <img src="https://i.postimg.cc/yxtm31qQ/ani.jpg" width="120px;" alt=""/>
-        <p><b>Aniruddha Ghosh<br>(External Technical Reviewer)</b></p><br />
+        <p><b>Aniruddha Ghosh<br>(External Technical Reviewer)</b></p><br /> -->
     </a>
 </td>
 </table>
