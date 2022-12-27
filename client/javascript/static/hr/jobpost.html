@@ -98,7 +98,7 @@
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                      <input type="id" name="jobpostingId" required class="form-control form-control-lg"
+                      <input type="id" name="jobpostingId" required class="form-control form-control-lg" onkeypress="return alpha(event)""
                         placeholder="Enter Jobposting Id" />
                       <label class="form-label" for="firstName">Job ID</label>
                     </div>
@@ -195,6 +195,15 @@
   <div class="padding">
     <script language="javascript" type="text/javascript" src="/header_footer/footer.js"></script>
   </div>
+  <script>
+        // To stop special characters
+
+        function alpha(e) {
+    var k;
+    document.all ? k = e.keyCode : k = e.which;
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+        }
+  </script>
 </body>
 </body>
 

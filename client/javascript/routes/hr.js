@@ -56,7 +56,7 @@ router.post('/jobpost', async (req, res) => {
             await blockexecute.createJobposting(req.body);
             res.status(200).send("<script>window.alert('Job Posted Successfully');window.location.replace('/hr/jobpost/')</script>");
         } catch (error) {
-            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
+            res.status(409).send('<script>window.alert("Job Already Exists");window.location.replace("/hr/jobpost")</script>') // 409 - Conflict
         }
     } else {
         res.status(401).sendFile('401.html', { root: 'public/errorpages' }) // 401 - Unauthorized
