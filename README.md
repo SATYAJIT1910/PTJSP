@@ -164,13 +164,13 @@ sudo npm run prod
         <td align="center">
             <a href="https://www.linkedin.com/in/aditya-jaman-85892524b/">
                 <img src="https://i.postimg.cc/SNLRMQpn/aditya.jpg" width="120px;" alt=""/>
-                <p><b>Aditya Jaman<br>(Front-end)</b></p><br />
+                <p><b>Aditya Jaman<br>(Assistant to Rakibul)</b></p><br />
             </a>
         </td>
             <td align="center">
         <a href="https://www.linkedin.com/in/aratrika-bose-0503231b3/">
             <img src="https://i.postimg.cc/5yxGKm6d/aratrika.jpg" width="120px;" alt=""/>
-            <p><b>Aratrika Bose<br>(Presenter & Research)</b></p><br />
+            <p><b>Aratrika Bose<br>(Presenter)</b></p><br />
         </a>
     </td>
         <td align="center">
@@ -180,13 +180,24 @@ sudo npm run prod
         <br />
     </a>
 </td>
-            </td>
-        <!-- <td align="center">
+ </table>
+ 
+ ## Acknowledgements
+ 
+ <table>
+<tr>
+<td align="center">
     <a href="https://www.linkedin.com/in/aghosh0605/">
         <img src="https://i.postimg.cc/yxtm31qQ/ani.jpg" width="120px;" alt=""/>
-        <p><b>Aniruddha Ghosh<br>(External Technical Reviewer)</b></p><br /> -->
+        <p><b>Aniruddha Ghosh<br /></p>
     </a>
 </td>
+<td>
+I wanted to express our gratitude to Aniruddha Ghosh from the Department of CSE at SRM University for taking the time to review our code and provide valuable suggestions for best practices. His expertise and guidance have been instrumental in improving the quality and efficiency of our work.
+<br><br>
+Thank you, Aniruddha, for your invaluable contribution to our project.
+</td>
+</tr>
 </table>
 
 
