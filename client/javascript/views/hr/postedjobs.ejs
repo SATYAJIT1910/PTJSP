@@ -10,21 +10,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job List</title>
     <style>
-#myTable {
+/* #myTable {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
   font-size: 18px;
 }
 
-#myTable th, #myTable td {
+#myTable{
+  border-collapse:collapse; table-layout:auto; width:1080px;
+  
+
+} */
+#myTable td{
+    border:solid 1px #fab; width:50px; 
+    margin: 2px;
+}
+ #myTable th, #myTable td {
   text-align: left;
-  padding: 12px;
+  padding: 16px;
+  word-wrap:break-word;
+  max-width: 250px;
 }
 
-#myTable tr {
+ #myTable tr {
   border-bottom: 1px solid #ddd;
-}
+} 
 
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
@@ -236,7 +247,7 @@ a {
                         <div class="container">
                             <a href=<%= "/hr/checkapplications/"+ data[i].Record.jobpostingId %> value="Apply">Check</button>
                             <%}else{%>
-                            <%=data[i].Record.hired%> is hired
+                            <%=data[i].Record.hired%>
                             <%}%>
                         </div>
                     </td>
