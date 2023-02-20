@@ -52,7 +52,11 @@ router.post('/jobpost', async (req, res) => {
     if (req.session.loggedin && req.session.usertype == 'hr') {
         try {
             let data = req.body;
-            data.HRId = req.session.username;
+        // To generate Job ID
+        const d = new Date();
+        const getLastDigit = num => +(num + '').slice(-2);
+        data.jobpostingId="JOB"+ getLastDigit(d.getTime())+Math.floor(Math.random()*10000);
+        data.HRId = req.session.username;
             await blockexecute.createJobposting(req.body);
             res.status(200).send("<script>window.alert('Job Posted Successfully');window.location.replace('/hr/jobpost/')</script>");
         } catch (error) {

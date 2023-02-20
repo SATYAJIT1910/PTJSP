@@ -96,13 +96,13 @@
               <form action="/hr/jobpost" method="post">
 
                 <div class="row">
-                  <div class="col-md-6 mb-4">
+                  <!-- <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                      <input type="id" name="jobpostingId" required class="form-control form-control-lg" onkeypress="return alpha(event)""
-                        placeholder="Enter Jobposting Id" />
+                      <input type="id" name="jobpostingId" id="jobid" required class="form-control form-control-lg" onkeypress="return alpha(event)""
+                        placeholder="Enter Jobposting Id" disabled/>
                       <label class="form-label" for="firstName">Job ID</label>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
@@ -203,6 +203,7 @@
     document.all ? k = e.keyCode : k = e.which;
     return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
         }
+
   </script>
 </body>
 </body>

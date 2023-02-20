@@ -36,8 +36,10 @@ router.post('/login/', async (req, res) => {
 // Register a new job seeker to the portal
 router.post('/createuser', async (req, res) => {
     try {
-        await blockexecute.createjobseeker(JSON.stringify(req.body));
-        console.log(req.body)
+        let data=req.body;
+        data.jobseekerId=data.phoneNumber;
+        console.log(data)
+        await blockexecute.createjobseeker(JSON.stringify(data));
         res.status(201).send('<script>window.alert("Registered Successfully");window.location.replace("/jobseeker/login")</script>'); // 201 - Created
     } catch (error) {
         res.status(409).send('<script>window.alert("User Already Exists");window.location.replace("/jobseeker/login")</script>') // 409 - Conflict

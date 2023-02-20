@@ -7,7 +7,7 @@
 
 let JobPosting = require('./jobposting.js')
 const PrimaryContract = require('./primary-contract.js');
-
+const crypto = require('crypto');
 class HRContract extends PrimaryContract {
 
     //Create jobposting in the ledger
@@ -46,7 +46,7 @@ class HRContract extends PrimaryContract {
         const jobposting = await this.readJobposting(ctx, jobpostingId);
         const jobseeker = await this.readJobseeker(ctx, jobseekerId);
         if (jobseeker.appliedTo.includes(jobpostingId)) {
-            jobposting.hired = jobseeker.jobseekerId;
+            jobposting.hired = crypto.createHash('sha256').update(jobseeker.jobseekerId).digest('hex');
             const buffer = Buffer.from(JSON.stringify(jobposting));
             await ctx.stub.putState(jobpostingId, buffer);
             console.log("Hired status updated")
