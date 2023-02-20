@@ -206,6 +206,7 @@
                     <th scope="col">Location</th>
                     <th scope="col">Experience(years)</th>
                     <th scope="col">Apply</th>
+                    <th scope="col">History</th>
 
                 </tr>
             </thead>
@@ -266,7 +267,9 @@
 
                         </div> -->
                         </td>
-
+                        <td>
+                            <a href=<%="/jobseeker/history/"+data[i].Record.jobpostingId%>>Check</a>
+                        </td>
                     </tr>
                     <% } %>
             </tbody>

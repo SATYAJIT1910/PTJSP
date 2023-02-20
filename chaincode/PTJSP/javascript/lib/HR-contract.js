@@ -98,38 +98,21 @@ class HRContract extends PrimaryContract {
         throw false;
 
     }
-        //Retrieves jobseeker history based on jobseekerId
-        async getjobseekerHistory(ctx, jobseekerId) {
-            let resultsIterator = await ctx.stub.getHistoryForKey(jobseekerId);
-            let asset = await this.getAllJobseekerResults(resultsIterator, true);
-    
-            return this.fetchLimitedFields(asset, true);
+        //Retrieves job post history
+        async getJobpostHistory(ctx, id) {
+        let iterator = await ctx.stub.getHistoryForKey(id);
+        let result = [];
+        let res = await iterator.next();
+        while (!res.done) {
+        if (res.value) {
+            console.info(`found state update with value: ${res.value.value.toString('utf8')}`);
+            const obj = JSON.parse(res.value.value.toString('utf8'));
+            result.push(obj);
         }
-    
-        fetchLimitedFields = (asset, includeTimeStamp = false) => {
-            for (let i = 0; i < asset.length; i++) {
-                const obj = asset[i];
-                asset[i] = {
-                    jobseekerId: obj.Key,
-                    firstName: obj.Record.firstName,
-                    lastName: obj.Record.lastName,
-                    age: obj.Record.age,
-                    address: obj.Record.address,
-                    phoneNumber: obj.Record.phoneNumber,
-                    qualification: obj.Record.qualification,
-                    achievements: obj.Record.achievements,
-                    experience: obj.Record.experience,
-                    skills: obj.Record.skills,
-                    certificates: obj.Record.certificates
-                };
-                if (includeTimeStamp) {
-                    asset[i].Timestamp = obj.Timestamp;
-                }
-            }
-    
-            return asset;
-        };
-
-
+        res = await iterator.next();
+        }
+        await iterator.close();
+        return result;  
+    }
 }
 module.exports = HRContract;

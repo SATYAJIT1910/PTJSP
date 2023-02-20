@@ -167,5 +167,23 @@ router.get('/apply/:JPID', async (req, res) => {
         res.redirect("/jobseeker/login")
     }
 })
+// Checks job history
+router.get('/history/:id',async(req,res)=>{
+    const jobpostingId = req.params.id;
+    if (req.session.loggedin &&  req.session.usertype == 'js') {
+        try {
+            let data= JSON.parse(await blockexecute.getJobpostHistory(jobpostingId))
+            res.status(200).json(data)
+        } catch (error) {
+            res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
+        }
+    } else {
+        res.redirect("/jobseeker/login")
+    }
+
+
+
+})
+
 
 export default router;

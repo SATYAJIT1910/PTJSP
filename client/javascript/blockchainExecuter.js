@@ -90,6 +90,11 @@ async function updateStatus(jobseekerId, jobpostingId) {
     await contract.submitTransaction('HRContract:updateStatus', jobseekerId, jobpostingId)
     console.log('HRContract:updateStatus-Transaction has been submitted');
 }
+async function getJobpostHistory(jobpostingId){
+    const result = await contract.evaluateTransaction('HRContract:getJobpostHistory', jobpostingId);
+    console.log(`HRContract:getJobpostHistory-Transaction has been evaluated, result is: ${result.toString()}`);
+    return result;
+}
 
 export {
     readAllJobSeeker,
@@ -106,5 +111,6 @@ export {
     queryJobPostingByHRId,
     readJobseekerbyHR,
     updateStatus,
+    getJobpostHistory,
     initcont,
 }
