@@ -173,8 +173,12 @@ router.get('/history/:id',async(req,res)=>{
     if (req.session.loggedin &&  req.session.usertype == 'js') {
         try {
             let data= JSON.parse(await blockexecute.getJobpostHistory(jobpostingId))
+            for(let i=0;i<data.length;i++){
+               data[i].appliedCandidates=createHash('sha256').update(data[i].appliedCandidates.toString()).digest('hex');
+            }
             res.status(200).json(data)
         } catch (error) {
+            console.log(error.toString())
             res.status(500).sendFile('500.html', { root: 'public/errorpages' }) // 500 - Internal Server Error
         }
     } else {
