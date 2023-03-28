@@ -1,3 +1,17 @@
+### Citation :
+
+```
+@INPROCEEDINGS{10074582,
+  author={Ghosh, Satyajit and Islam, Rakibul and Jaman, Aditya and Bose, Aratrika and Roy, Abhishek},
+  booktitle={2023 International Conference on Advances in Intelligent Computing and Applications (AICAPS)}, 
+  title={ChainHire: A Privacy-Preserving and Transparent Job Search Portal Using an Enterprise-Level Permissioned Blockchain Framework}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-6},
+  doi={10.1109/AICAPS57044.2023.10074582}}
+```
+
 ### Requirements :
 1. Node v10.19.0
 2. NPM v6.14.4
