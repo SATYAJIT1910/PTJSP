@@ -141,12 +141,22 @@
             bottom: 0;
             width: 100%;
         }
+        .table-filter{
+            width: 25px;
+        }
+        .aligncolumnnames{
+    
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+        }
     </style>
 
 </head>
 
 
-<script>
+<!-- <script>
 
     //FOR THE SEARCH BUTTON
     function myFunction() {
@@ -168,7 +178,7 @@
         }
     }
 
-</script>
+</script> -->
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -189,28 +199,68 @@
 
         <br>
         <h1>Jobs</h1><br><br>
-        <p>Filter by Search</p>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Search" class="m-2">
-        <table id="myTable" class="content-table">
+        <!-- <p>Filter by Search</p>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Search" class="m-2"> -->
+       <table id="myTable" class="content-table">
 
             <thead>
                 <tr class="header">
-
-
-                    <th scope="col">Profile Name</th>
-                    <th scope="col">Age limit</th>
-                    <th scope="col">Company Name</th>
-                    <th scope="col">Qualification</th>
-                    <th scope="col">Skills</th>
-                    <th scope="col">Salary</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Experience(years)</th>
-                    <th scope="col">Apply</th>
-                    <th scope="col">History</th>
-
-                </tr>
+                <th col-index = 1><div class="aligncolumnnames">Profile Name</div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 2><div class="aligncolumnnames">Age limit </div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+    
+                <th col-index = 3><div class="aligncolumnnames">Company Name</div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 4><div class="aligncolumnnames">Qualification</div> 
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 5><div class="aligncolumnnames">Skills </div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 6><div class="aligncolumnnames">Salary </div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 7><div class="aligncolumnnames">Location </div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 8><div class="aligncolumnnames">Experience<br> (years)</div>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th>
+                <th col-index = 9>Apply
+                   
+                </th>
+                <th col-index = 10>History
+                   
+                </th>
+                
             </thead>
+
             <tbody class="table-group-divider">
+                <!-- <th>
+                    <select class="table-filter" onchange="filter_rows()">
+                        <option value="all"></option>
+                    </select>
+                </th> -->
                 <% for(var i=0; i < data.length; i++) { %>
                     <tr>
 
@@ -295,5 +345,129 @@
         <div style="margin-top:10%;"></div>
         <script language="javascript" type="text/javascript" src="/header_footer/footer.js"></script>
     </div> -->
+
+
+ <!-- The section of the code is added by Rakibul Islam for the filters -->
+ <script>
+    // window.onload = () => {
+    //     console.log(document.querySelector("#myTable > tbody > tr:nth-child(1) > td:nth-child(2) ").innerHTML);
+    // };
+
+    getUniqueValuesFromColumn()
+
+    function getUniqueValuesFromColumn() {
+
+        var unique_col_values_dict = {}
+
+        allFilters = document.querySelectorAll(".table-filter")
+        allFilters.forEach((filter_i) => {
+            col_index = filter_i.parentElement.getAttribute("col-index");
+            // alert(col_index)
+            const rows = document.querySelectorAll("#myTable > tbody > tr")
+
+            rows.forEach((row) => {
+                cell_value = row.querySelector("td:nth-child(" + col_index + ")").innerHTML;
+                // if the col index is already present in the dict
+                if (col_index in unique_col_values_dict) {
+
+                    // if the cell value is already present in the array
+                    if (unique_col_values_dict[col_index].includes(cell_value)) {
+                        // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])
+
+                    } else {
+                        unique_col_values_dict[col_index].push(cell_value)
+                        // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])
+
+                    }
+
+
+                } else {
+                    unique_col_values_dict[col_index] = new Array(cell_value)
+                }
+            });
+
+
+        });
+
+        // for (i in unique_col_values_dict) {
+        //     alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);
+        // }
+
+        updateSelectOptions(unique_col_values_dict)
+
+    };
+
+    // Add <option> tags to the desired columns based on the unique values
+
+    function updateSelectOptions(unique_col_values_dict) {
+        allFilters = document.querySelectorAll(".table-filter")
+
+        allFilters.forEach((filter_i) => {
+            col_index = filter_i.parentElement.getAttribute('col-index')
+
+            unique_col_values_dict[col_index].forEach((i) => {
+                filter_i.innerHTML = filter_i.innerHTML + `\n<option value="${i}">${i}</option>`
+            });
+
+        });
+    };
+
+
+    // Create filter_rows() function
+
+    // filter_value_dict {2 : Value selected, 4:value, 5: value}
+
+    function filter_rows() {
+        allFilters = document.querySelectorAll(".table-filter")
+        var filter_value_dict = {}
+
+        allFilters.forEach((filter_i) => {
+            col_index = filter_i.parentElement.getAttribute('col-index')
+
+            value = filter_i.value
+            if (value != "all") {
+                filter_value_dict[col_index] = value;
+            }
+        });
+
+        var col_cell_value_dict = {};
+
+        const rows = document.querySelectorAll("#myTable tbody tr");
+        rows.forEach((row) => {
+            var display_row = true;
+
+            allFilters.forEach((filter_i) => {
+                col_index = filter_i.parentElement.getAttribute('col-index')
+                col_cell_value_dict[col_index] = row.querySelector("td:nth-child(" + col_index + ")").innerHTML
+            })
+
+            for (var col_i in filter_value_dict) {
+                filter_value = filter_value_dict[col_i]
+                row_cell_value = col_cell_value_dict[col_i]
+
+                if (row_cell_value.indexOf(filter_value) == -1 && filter_value != "all") {
+                    display_row = false;
+                    break;
+                }
+
+
+            }
+
+            if (display_row == true) {
+                row.style.display = "table-row"
+
+            } else {
+                row.style.display = "none"
+
+            }
+
+
+
+
+
+        })
+
+    }
+</script>
 
 </html>
