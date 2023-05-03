@@ -156,9 +156,9 @@
 </head>
 
 
-<!-- <script>
+<script>
 
-    //FOR THE SEARCH BUTTON
+    // Donot delete this , otherwise the search from the homepage will not work.
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -178,7 +178,7 @@
         }
     }
 
-</script> -->
+</script>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -199,8 +199,7 @@
 
         <br>
         <h1>Jobs</h1><br><br>
-        <!-- <p>Filter by Search</p>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Search" class="m-2"> -->
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Search" class="m-2" hidden> 
        <table id="myTable" class="content-table">
 
             <thead>
