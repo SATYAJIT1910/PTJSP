@@ -4,7 +4,7 @@ Video Demo and Presentation: <a href ="https://www.youtube.com/watch?v=ujy5XD9W8
 </i> </h3>
 <h3>
 <i>
-Download <a href="">Report</a> ,<a href="">Presentation</a>
+Download <a href="https://github.com/SATYAJIT1910/PTJSP/blob/main/reports_and_presentation_files/Report_ChainHire_v2.3.pdf">Report</a> ,<a href="https://github.com/SATYAJIT1910/PTJSP/blob/main/reports_and_presentation_files/ChainHire_25_5_2023.pdf">Presentation</a>
 </i>
 </h3>
 
